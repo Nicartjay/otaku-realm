@@ -192,6 +192,7 @@ html.light .bg-white\/10 {
   height: 100vh;
   overflow: hidden;
   background: rgb(var(--ink));
+  isolation: isolate;
 }
 
 .hyper-scanlines {
@@ -220,6 +221,7 @@ html.light .bg-white\/10 {
 .hyper-hud {
   position: absolute;
   inset: 1.5rem;
+  top: 5rem;
   z-index: 20;
   pointer-events: none;
   display: flex;

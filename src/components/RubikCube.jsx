@@ -8,6 +8,9 @@ import useTheme from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
 import { t } from '../data/translations'
 
+const CUBE_THEMES = ['slayer', 'ninja', 'cursed', 'titan', 'pirate']
+const CUBE_THEME_LABELS = { slayer: 'Slayer', ninja: 'Ninja', cursed: 'Cursed', titan: 'Titan', pirate: 'Pirate' }
+
 /* Encouragement blinking text — inspired by CodePen oliviale/vPvvyr "Encouragement" button.
    Positioned around the GIVE UP button at various angles, sizes, timings.
    Only visible on hover. 6 English + 6 Japanese. */
@@ -43,7 +46,7 @@ const CUBE_HTML = `
     <range name="flip" title="Flip Type" list="Swift&nbsp;,Smooth,Bounce"></range>
     <range name="scramble" title="Scramble Length" list="20,25,30"></range>
     <range name="fov" title="Camera Angle" list="Ortographic,Perspective"></range>
-    <range name="theme" title="Color Scheme" list="Cube,Erno,Dust,Camo,Rain"></range>
+    <range name="theme" title="Color Scheme" list="Slayer,Ninja,Cursed,Titan,Pirate"></range>
   </div>
   <div class="ui__theme">
     <range name="hue" title="Hue" color></range>
@@ -81,6 +84,7 @@ export default function RubikCube() {
   const [ready, setReady] = useState(false)
   const [playing, setPlaying] = useState(false)
   const [btnHovered, setBtnHovered] = useState(false)
+  const [cubeThemeIdx, setCubeThemeIdx] = useState(0)
 
   // IntersectionObserver — detect when section scrolls into view
   useEffect(() => {
@@ -226,16 +230,40 @@ export default function RubikCube() {
         )}
       </div>
 
-      {/* Give Up button — visible during play, with intro animation + encouragement blinks */}
+      {/* Give Up + Theme buttons — visible during play */}
       <AnimatePresence>
         {playing && (
           <motion.div
-            className="relative z-10 text-center mt-6"
+            className="relative z-10 flex items-center justify-center gap-4 mt-6"
             initial={{ opacity: 0, y: 24, scale: 0.85 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -16, scale: 0.9 }}
             transition={{ type: 'spring', stiffness: 260, damping: 20, mass: 0.8 }}
           >
+            {/* Theme cycle button */}
+            <MagneticButton
+              onClick={(e) => {
+                e.stopPropagation()
+                if (gameRef.current) {
+                  const nextIdx = (cubeThemeIdx + 1) % CUBE_THEMES.length
+                  setCubeThemeIdx(nextIdx)
+                  const g = gameRef.current.game
+                  if (g && g.themes) {
+                    g.themes.setTheme(CUBE_THEMES[nextIdx], true)
+                    if (g.storage) g.storage.savePreferences()
+                  }
+                }
+              }}
+              className="inline-block px-6 py-4 bg-paper/10 border border-paper/30 hover:bg-paper/20 text-paper 
+                font-display text-lg tracking-wider rounded-sm transition-colors"
+              strength={20}
+              tilt={10}
+              glowColor="rgba(255,201,60,0.3)"
+            >
+              {CUBE_THEME_LABELS[CUBE_THEMES[cubeThemeIdx]]}
+            </MagneticButton>
+
+            {/* Give Up button */}
             <div
               className="inline-block relative"
               onMouseEnter={() => setBtnHovered(true)}

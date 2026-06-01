@@ -65,13 +65,14 @@ export default function HyperScroll({ autoScroll = false }) {
         card.className = 'hyper-card'
         card.setAttribute('data-cursor', 'hover')
 
+        const titleClass = lang === 'jp' ? 'hyper-card-title font-pop' : 'hyper-card-title'
         card.innerHTML = `
           <div class="hyper-card-img">
             <img src="${anime.cover}" alt="${anime.title}" loading="lazy" />
           </div>
           <div class="hyper-card-body">
             <span class="hyper-card-id">${anime.jp}</span>
-            <h3 class="hyper-card-title">${lang === 'jp' ? anime.jp : anime.title}</h3>
+            <h3 class="${titleClass}">${lang === 'jp' ? anime.jp : anime.title}</h3>
             <div class="hyper-card-meta">
               <span>${anime.studio}</span>
               <span>${anime.year}</span>

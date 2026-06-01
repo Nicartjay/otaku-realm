@@ -150,7 +150,7 @@ function ImageLayer({ item, index, total, scrollYProgress }) {
 }
 
 /* Text overlay rendered separately (outside clip-path) */
-function TextOverlay({ item, index, total, scrollYProgress }) {
+function TextOverlay({ item, index, total, scrollYProgress, lang }) {
   const segmentSize = 1 / (total - 1)
   const start = index * segmentSize
   const end = start + segmentSize
@@ -204,7 +204,7 @@ function TextOverlay({ item, index, total, scrollYProgress }) {
       >
         {item.year}
       </div>
-      <h3 className="mt-2 font-display text-xl text-white md:text-2xl">
+      <h3 className={`mt-2 ${lang === 'jp' ? 'font-pop' : 'font-display'} text-xl text-white md:text-2xl`}>
         <GlitchTranslation textKey={item.titleKey} speed={30} />
       </h3>
       <p className="mt-2 max-w-md text-sm text-white/70 md:text-base">
@@ -440,6 +440,7 @@ export default function Timeline() {
                 index={i}
                 total={total}
                 scrollYProgress={scrollYProgress}
+                lang={lang}
               />
             ))}
 

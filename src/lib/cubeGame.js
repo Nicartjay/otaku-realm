@@ -892,7 +892,30 @@ class Cube {
     if ( typeof this.pieces !== 'object' && typeof this.edges !== 'object' ) return;
 
     this.pieces.forEach( piece => piece.userData.cube.material.color.setHex( colors.P ) );
-    this.edges.forEach( edge => edge.material.color.setHex( colors[ edge.name ] ) );
+
+    // Get current theme name to look up face icons
+    const themeName = this.game && this.game.themes ? this.game.themes.theme : null;
+    const faceIcons = themeName && THEME_FACE_ICONS[ themeName ] ? THEME_FACE_ICONS[ themeName ] : null;
+
+    this.edges.forEach( edge => {
+      const faceColor = colors[ edge.name ];
+
+      // Dispose old texture if any
+      if ( edge.material.map ) {
+        edge.material.map.dispose();
+        edge.material.map = null;
+      }
+
+      if ( faceIcons && faceIcons[ edge.name ] && CUBE_ICON_DRAW[ faceIcons[ edge.name ] ] ) {
+        // Set material color to white so texture colors show accurately
+        edge.material.color.setHex( 0xffffff );
+        edge.material.map = createFaceTexture( faceColor, faceIcons[ edge.name ] );
+        edge.material.needsUpdate = true;
+      } else {
+        edge.material.color.setHex( faceColor );
+        edge.material.needsUpdate = true;
+      }
+    });
 
   }
 
@@ -2697,12 +2720,12 @@ class Preferences {
       } ),
 
       theme: new Range( 'theme', {
-        value: { cube: 0, erno: 1, dust: 2, camo: 3, rain: 4 }[ this.game.themes.theme ],
+        value: { slayer: 0, ninja: 1, cursed: 2, titan: 3, pirate: 4 }[ this.game.themes.theme ],
         range: [ 0, 4 ],
         step: 1,
         onUpdate: value => {
 
-          const theme = [ 'cube', 'erno', 'dust', 'camo', 'rain' ][ value ];
+          const theme = [ 'slayer', 'ninja', 'cursed', 'titan', 'pirate' ][ value ];
           this.game.themes.setTheme( theme );
 
         },
@@ -3227,6 +3250,14 @@ class Storage {
       this.game.world.resize();
 
       this.game.themes.colors = preferences.colors;
+
+      // Validate saved colors against current defaults — if keys don't match, reset
+      const defaultKeys = Object.keys( this.game.themes.defaults ).sort().join(',');
+      const savedKeys = Object.keys( this.game.themes.colors ).sort().join(',');
+      if ( savedKeys !== defaultKeys ) {
+        this.game.themes.colors = JSON.parse( JSON.stringify( this.game.themes.defaults ) );
+      }
+
       this.game.themes.setTheme( preferences.theme );
 
       return true;
@@ -3240,7 +3271,7 @@ class Storage {
       this.game.world.fov = 10;
       this.game.world.resize();
 
-      this.game.themes.setTheme( 'cube' );
+      this.game.themes.setTheme( 'slayer' );
 
       this.savePreferences();
 
@@ -3273,6 +3304,204 @@ class Storage {
 
 }
 
+// ─── Cube Face Icon Textures ──────────────────────────────────────────────────
+// SVG path data for anime icons rendered onto cube face textures.
+// Each face gets a subtle icon embossed on top of its solid color.
+
+// Each theme maps 6 faces to icon keys
+const THEME_FACE_ICONS = {
+  slayer: { U: 'flame', D: 'energy', F: 'flame', R: 'transmute', B: 'leaf', L: 'swords' },
+  ninja:  { U: 'leaf', D: 'energy', F: 'flame', R: 'swords', B: 'star', L: 'leaf' },
+  cursed: { U: 'cursedHex', D: 'ghoulEye', F: 'cursedHex', R: 'swords', B: 'quill', L: 'star' },
+  titan:  { U: 'wings', D: 'swords', F: 'wings', R: 'transmute', B: 'flame', L: 'star' },
+  pirate: { U: 'strawHat', D: 'energy', F: 'strawHat', R: 'swords', B: 'magnify', L: 'star' },
+};
+
+/**
+ * Draw icons on canvas using native 2D drawing (fully synchronous, no Image loading).
+ * Each icon is a function that draws on ctx centered at (0,0) in a -9..9 coordinate space.
+ */
+const CUBE_ICON_DRAW = {
+  flame( ctx, color, light ) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo( 0, -9 ); ctx.bezierCurveTo( 5, -4, 7, 0, 5, 5 );
+    ctx.bezierCurveTo( 4, 7, 1, 8, 0, 8 ); ctx.bezierCurveTo( -1, 8, -4, 7, -5, 5 );
+    ctx.bezierCurveTo( -7, 0, -5, -4, 0, -9 ); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = light;
+    ctx.beginPath();
+    ctx.moveTo( 0, -2 ); ctx.bezierCurveTo( 2, 0, 3, 3, 1, 6 );
+    ctx.bezierCurveTo( 0, 7, -1, 7, -2, 6 ); ctx.bezierCurveTo( -3, 4, -3, 1, 0, -2 );
+    ctx.closePath(); ctx.fill();
+  },
+  leaf( ctx, color, light, dark ) {
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo( -8, 6 ); ctx.bezierCurveTo( -8, -4, 0, -8, 8, -6 );
+    ctx.bezierCurveTo( 6, 2, 0, 8, -8, 6 ); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = dark; ctx.lineWidth = 1.2; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo( -7, 5 ); ctx.bezierCurveTo( -3, 0, 2, -3, 7, -5 ); ctx.stroke();
+  },
+  cursedHex( ctx, color ) {
+    ctx.strokeStyle = color; ctx.lineWidth = 1.8;
+    ctx.beginPath();
+    const pts = [ [0,-9],[8,-4],[8,4],[0,9],[-8,4],[-8,-4] ];
+    ctx.moveTo( pts[0][0], pts[0][1] );
+    for ( let i = 1; i < pts.length; i++ ) ctx.lineTo( pts[i][0], pts[i][1] );
+    ctx.closePath(); ctx.stroke();
+    ctx.fillStyle = color; ctx.globalAlpha = 0.5;
+    ctx.beginPath();
+    const inner = [ [0,-5],[4,-2],[4,2],[0,5],[-4,2],[-4,-2] ];
+    ctx.moveTo( inner[0][0], inner[0][1] );
+    for ( let i = 1; i < inner.length; i++ ) ctx.lineTo( inner[i][0], inner[i][1] );
+    ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 0.6; ctx.lineWidth = 0.8;
+    ctx.beginPath(); ctx.moveTo( -8, -4 ); ctx.lineTo( 8, 4 ); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo( 8, -4 ); ctx.lineTo( -8, 4 ); ctx.stroke();
+    ctx.globalAlpha = 1;
+  },
+  star( ctx, color, light ) {
+    const outer = [ [0,-9],[2.5,-3],[9,-3],[4,1],[6,8],[0,4],[-6,8],[-4,1],[-9,-3],[-2.5,-3] ];
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.moveTo( outer[0][0], outer[0][1] );
+    for ( let i = 1; i < outer.length; i++ ) ctx.lineTo( outer[i][0], outer[i][1] );
+    ctx.closePath(); ctx.fill();
+    const inner2 = [ [0,-5],[1.4,-1.5],[5,-1.5],[2.2,0.5],[3.3,4.5],[0,2],[-3.3,4.5],[-2.2,0.5],[-5,-1.5],[-1.4,-1.5] ];
+    ctx.fillStyle = light; ctx.globalAlpha = 0.8;
+    ctx.beginPath(); ctx.moveTo( inner2[0][0], inner2[0][1] );
+    for ( let i = 1; i < inner2.length; i++ ) ctx.lineTo( inner2[i][0], inner2[i][1] );
+    ctx.closePath(); ctx.fill(); ctx.globalAlpha = 1;
+  },
+  wings( ctx, color, light ) {
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.moveTo(-1,0); ctx.bezierCurveTo(-3,-2,-6,-3,-10,-1);
+    ctx.bezierCurveTo(-7,0,-5,1,-1,1); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.moveTo(-1,1); ctx.bezierCurveTo(-4,2,-7,3,-10,2);
+    ctx.bezierCurveTo(-7,4,-4,5,-1,3); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = light; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.moveTo(1,0); ctx.bezierCurveTo(3,-2,6,-3,10,-1);
+    ctx.bezierCurveTo(7,0,5,1,1,1); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.moveTo(1,1); ctx.bezierCurveTo(4,2,7,3,10,2);
+    ctx.bezierCurveTo(7,4,4,5,1,3); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1; ctx.strokeStyle = color; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(0,-3); ctx.lineTo(0,5); ctx.stroke();
+  },
+  strawHat( ctx, color, light, dark ) {
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.ellipse( 0, 3, 10, 3, 0, 0, Math.PI * 2 ); ctx.fill();
+    ctx.beginPath(); ctx.moveTo(-5,3); ctx.bezierCurveTo(-5,-3,-4,-7,0,-7);
+    ctx.bezierCurveTo(4,-7,5,-3,5,3); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = dark;
+    ctx.fillRect( -5, 1, 10, 2 );
+  },
+  energy( ctx, color, light ) {
+    ctx.fillStyle = color; ctx.globalAlpha = 0.85;
+    ctx.beginPath(); ctx.arc( 0, 0, 7, 0, Math.PI * 2 ); ctx.fill();
+    ctx.fillStyle = light; ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.arc( 0, 0, 4, 0, Math.PI * 2 ); ctx.fill();
+    ctx.globalAlpha = 1; ctx.strokeStyle = color; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(0,-9); ctx.lineTo(0,-7); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(0,7); ctx.lineTo(0,9); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(-9,0); ctx.lineTo(-7,0); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(7,0); ctx.lineTo(9,0); ctx.stroke();
+  },
+  transmute( ctx, color ) {
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.arc( 0, 0, 9, 0, Math.PI * 2 ); ctx.stroke();
+    ctx.lineWidth = 1; ctx.globalAlpha = 0.7;
+    ctx.beginPath(); ctx.arc( 0, 0, 5, 0, Math.PI * 2 ); ctx.stroke();
+    ctx.globalAlpha = 1; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(0,-6); ctx.lineTo(5.2,3); ctx.lineTo(-5.2,3); ctx.closePath(); ctx.stroke();
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.arc( 0, 0, 1.5, 0, Math.PI * 2 ); ctx.fill();
+    ctx.globalAlpha = 1;
+  },
+  quill( ctx, color, light ) {
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.moveTo(-2,9); ctx.lineTo(0,-8);
+    ctx.bezierCurveTo(2,-6,5,-3,4,2); ctx.bezierCurveTo(3,5,1,7,-2,9);
+    ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = light; ctx.lineWidth = 0.8; ctx.globalAlpha = 0.5;
+    ctx.beginPath(); ctx.moveTo(0,-8); ctx.lineTo(-1,9); ctx.stroke();
+    ctx.fillStyle = light; ctx.globalAlpha = 0.8;
+    ctx.beginPath(); ctx.moveTo(-2,9); ctx.lineTo(-1,11); ctx.lineTo(0,9); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 1;
+  },
+  swords( ctx, color, light ) {
+    ctx.fillStyle = color; ctx.globalAlpha = 0.9;
+    ctx.beginPath(); ctx.moveTo(-7,7); ctx.lineTo(3,-7); ctx.lineTo(4,-5); ctx.lineTo(-5,8); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = light; ctx.globalAlpha = 0.85;
+    ctx.beginPath(); ctx.moveTo(7,7); ctx.lineTo(-3,-7); ctx.lineTo(-4,-5); ctx.lineTo(5,8); ctx.closePath(); ctx.fill();
+    ctx.globalAlpha = 0.7;
+    ctx.fillRect( -3, 4, 6, 1.5 );
+    ctx.globalAlpha = 1;
+  },
+  ghoulEye( ctx, color, light, dark ) {
+    ctx.strokeStyle = color; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(-9,0); ctx.bezierCurveTo(-5,-6,5,-6,9,0);
+    ctx.bezierCurveTo(5,6,-5,6,-9,0); ctx.closePath(); ctx.stroke();
+    ctx.fillStyle = color; ctx.globalAlpha = 0.8;
+    ctx.beginPath(); ctx.arc(0,0,4,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle = dark; ctx.globalAlpha = 1;
+    ctx.beginPath(); ctx.arc(0,0,2,0,Math.PI*2); ctx.fill();
+  },
+  magnify( ctx, color, light ) {
+    ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.arc(-2,-2,6,0,Math.PI*2); ctx.stroke();
+    ctx.strokeStyle = light; ctx.lineWidth = 1; ctx.globalAlpha = 0.6; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(-4,-5); ctx.bezierCurveTo(-2,-7,1,-6,2,-4); ctx.stroke();
+    ctx.globalAlpha = 1; ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(3,3); ctx.lineTo(9,9); ctx.stroke();
+  },
+};
+
+/**
+ * Creates a CanvasTexture for a cube face: solid color + centered icon drawn synchronously.
+ * @param {number} hexColor — 0xRRGGBB face color
+ * @param {string} iconKey — key into CUBE_ICON_DRAW
+ * @returns {THREE.CanvasTexture}
+ */
+function createFaceTexture( hexColor, iconKey ) {
+  const size = 128;
+  const canvas = document.createElement( 'canvas' );
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext( '2d' );
+
+  // Fill solid background color
+  const r = ( hexColor >> 16 ) & 0xff;
+  const g = ( hexColor >> 8 ) & 0xff;
+  const b = hexColor & 0xff;
+  ctx.fillStyle = `rgb(${r},${g},${b})`;
+  ctx.fillRect( 0, 0, size, size );
+
+  // Draw icon centered, scaled from -12..12 viewBox to canvas
+  const drawFn = CUBE_ICON_DRAW[ iconKey ];
+  if ( drawFn ) {
+    ctx.save();
+    // Transform: center at 64,64 and scale from ±12 to 128px → scale factor ~5.3
+    ctx.translate( size / 2, size / 2 );
+    ctx.scale( size / 24, size / 24 );
+    const iconColor = 'rgba(255,255,255,0.85)';
+    const iconLight = 'rgba(255,255,255,0.95)';
+    const iconDark = 'rgba(0,0,0,0.5)';
+    drawFn( ctx, iconColor, iconLight, iconDark );
+    ctx.restore();
+  }
+
+  const texture = new THREE.CanvasTexture( canvas );
+  texture.colorSpace = THREE.SRGBColorSpace;
+  // ExtrudeGeometry UVs are in shape-coordinate space (~[-0.167, 0.167] for pieceSize=1/3).
+  // Scale and offset so the full texture maps to that UV range.
+  texture.wrapS = THREE.ClampToEdgeWrapping;
+  texture.wrapT = THREE.ClampToEdgeWrapping;
+  texture.repeat.set( 3, 3 );
+  texture.offset.set( 0.5, 0.5 );
+  return texture;
+}
+
 class Themes {
 
   constructor( game ) {
@@ -3281,53 +3510,53 @@ class Themes {
     this.theme = null;
 
     this.defaults = {
-      cube: {
-        U: 0xfff7ff, // white
-        D: 0xffef48, // yellow
-        F: 0xef3923, // red
-        R: 0x41aac8, // blue
-        B: 0xff8c0a, // orange
-        L: 0x82ca38, // green
+      slayer: { // Demon Slayer — fire, water, sun
+        U: 0xfff7ff, // white (nichirin)
+        D: 0xffc93c, // sun gold
+        F: 0xff2d55, // flame red
+        R: 0x2bc4e3, // water blue
+        B: 0x8b5cf6, // wisteria purple
+        L: 0x2d8a4e, // forest green
         P: 0x08101a, // piece
         G: 0xd1d5db, // background
       },
-      erno: {
-        U: 0xffffff,
-        D: 0xffd500,
-        F: 0xc41e3a,
-        R: 0x0051ba,
-        B: 0xff5800,
-        L: 0x009e60,
+      ninja: { // Naruto — leaf village, kyubi, sharingan
+        U: 0xffffff, // white
+        D: 0xff8c00, // naruto orange
+        F: 0xcc2233, // sharingan red
+        R: 0x1e6baf, // konoha blue
+        B: 0xffc93c, // kyubi gold
+        L: 0x3a9e5c, // leaf green
         P: 0x08101a,
         G: 0x8abdff,
       },
-      dust: {
-        U: 0xfff6eb,
-        D: 0xe7c48d,
-        F: 0x8f253e,
-        R: 0x607e69,
-        B: 0xbe6f62,
-        L: 0x849f5d,
+      cursed: { // Jujutsu Kaisen — cursed energy, domain
+        U: 0xf0e6ff, // pale lavender
+        D: 0x1a1a2e, // void black
+        F: 0x7c3aed, // cursed purple
+        R: 0x06b6d4, // domain cyan
+        B: 0xef4444, // blood red
+        L: 0x3b82f6, // infinity blue
         P: 0x08101a,
-        G: 0xE7C48D,
+        G: 0x4c1d95,
       },
-      camo: {
-        U: 0xfff6eb,
-        D: 0xbfb672,
-        F: 0x37241c,
-        R: 0x718456,
-        B: 0x805831,
-        L: 0x37431d,
+      titan: { // Attack on Titan — survey corps, walls, titans
+        U: 0xf5f5f0, // stone white
+        D: 0x8b6914, // titan gold
+        F: 0x1f4e3d, // survey corps green
+        R: 0x7c3a2e, // wall brown
+        B: 0xc41e3a, // crimson
+        L: 0x6b7280, // ODM silver
         P: 0x08101a,
         G: 0xBFB672,
       },
-      rain: {
-        U: 0xfafaff,
-        D: 0xedb92d,
-        F: 0xce2135,
-        R: 0x449a89,
-        B: 0xec582f,
-        L: 0xa3a947,
+      pirate: { // One Piece — straw hats, grand line
+        U: 0xfff8e1, // straw white
+        D: 0xf59e0b, // straw hat gold
+        F: 0xdc2626, // luffy red
+        R: 0x2563eb, // sea blue
+        B: 0x16a34a, // zoro green
+        L: 0xfb923c, // nami orange
         P: 0x08101a,
         G: 0x87b9ac,
       },
@@ -3347,6 +3576,9 @@ class Themes {
 
     if ( theme === this.theme && force === false ) return;
     if ( theme !== false ) this.theme = theme;
+
+    // Fallback if saved theme name no longer exists (e.g. after theme rename)
+    if ( ! this.colors[ this.theme ] ) this.theme = Object.keys( this.colors )[0];
 
     const colors = this.getColors();
 
