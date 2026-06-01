@@ -686,17 +686,32 @@ html.light .bg-white\/10 {
 /* ═══ 3D Character Cards ═══ */
 .char3d-scroll {
   scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .char3d-card {
   position: relative;
   flex-shrink: 0;
-  width: 18rem;
-  height: 26rem;
+  width: 14rem;
+  height: 20rem;
   perspective: 50rem;
   scroll-snap-align: center;
   --rx: 0deg;
   --ry: 0deg;
+}
+
+@media (min-width: 640px) {
+  .char3d-card {
+    width: 16rem;
+    height: 23rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .char3d-card {
+    width: 18rem;
+    height: 26rem;
+  }
 }
 
 .char3d-shadow {
@@ -722,25 +737,39 @@ html.light .bg-white\/10 {
 
 .char3d-border {
   position: absolute;
-  inset: 1.2rem;
-  border: 3px solid var(--aura);
+  inset: 0.8rem;
+  border: 2px solid var(--aura);
   border-radius: 0.5rem;
   transform: rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 2rem);
   pointer-events: none;
   z-index: 2;
 }
 
+@media (min-width: 768px) {
+  .char3d-border {
+    inset: 1.2rem;
+    border-width: 3px;
+  }
+}
+
 /* front half of border (sits above cutout) */
 .char3d-card::before {
   content: "";
   position: absolute;
-  inset: 1.2rem;
-  border: 3px solid var(--aura);
+  inset: 0.8rem;
+  border: 2px solid var(--aura);
   border-radius: 0.5rem;
   transform: rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 2rem);
   pointer-events: none;
   z-index: 5;
   border-left-color: transparent;
+}
+
+@media (min-width: 768px) {
+  .char3d-card::before {
+    inset: 1.2rem;
+    border-width: 3px;
+  }
 }
 
 .char3d-cutout {
@@ -762,7 +791,7 @@ html.light .bg-white\/10 {
   align-items: center;
   justify-content: center;
   font-family: 'Noto Sans JP', sans-serif;
-  font-size: 10rem;
+  font-size: 6rem;
   line-height: 1;
   opacity: 0.12;
   transform: rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 1rem);
@@ -771,16 +800,28 @@ html.light .bg-white\/10 {
   text-shadow: 0 0 40px currentColor;
 }
 
+@media (min-width: 768px) {
+  .char3d-kanji {
+    font-size: 10rem;
+  }
+}
+
 .char3d-content {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  padding: 1.8rem;
+  padding: 1.2rem;
   transform: rotateX(var(--rx)) rotateY(var(--ry)) translate3d(0, 0, 5rem);
   z-index: 6;
   pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .char3d-content {
+    padding: 1.8rem;
+  }
 }
 
 /* hide native scrollbar */

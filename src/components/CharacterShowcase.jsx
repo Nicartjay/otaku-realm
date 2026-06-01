@@ -129,11 +129,13 @@ function Card3D({ ch, index }) {
   const handleMove = (e) => {
     const el = ref.current
     if (!el) return
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY
     const rect = el.getBoundingClientRect()
     const cx = (rect.left + rect.right) / 2
     const cy = (rect.top + rect.bottom) / 2
-    const px = e.clientX - cx
-    const py = e.clientY - cy
+    const px = clientX - cx
+    const py = clientY - cy
     targetRef.current.x = remap(px, rect.width / 2, ANGLE)
     targetRef.current.y = -remap(py, rect.height / 2, ANGLE)
   }
@@ -191,13 +193,13 @@ function Card3D({ ch, index }) {
 
       {/* content (most forward) */}
       <div className="char3d-content">
-        <h3 className="font-display text-xl font-bold text-white drop-shadow-lg md:text-2xl">
+        <h3 className="font-display text-base font-bold text-white drop-shadow-lg sm:text-lg md:text-2xl">
           {ch.name}
         </h3>
-        <div className="mt-0.5 text-xs uppercase tracking-[0.3em] opacity-70" style={{ color: ch.aura }}>
+        <div className="mt-0.5 text-[0.6rem] uppercase tracking-[0.2em] opacity-70 sm:text-xs sm:tracking-[0.3em]" style={{ color: ch.aura }}>
           <GlitchTranslation textKey={ch.title} speed={25} />
         </div>
-        <p className="mt-2 text-sm italic text-white/80 line-clamp-2 drop-shadow">
+        <p className="mt-1 text-xs italic text-white/80 line-clamp-2 drop-shadow sm:mt-2 sm:text-sm">
           {ch.quote}
         </p>
       </div>
@@ -234,7 +236,8 @@ export default function CharacterShowcase() {
   const scroll = (dir) => {
     const el = scrollRef.current
     if (!el) return
-    el.scrollBy({ left: dir * 340, behavior: 'smooth' })
+    const cardWidth = window.innerWidth < 768 ? 260 : 340
+    el.scrollBy({ left: dir * cardWidth, behavior: 'smooth' })
   }
 
   return (
@@ -256,7 +259,7 @@ export default function CharacterShowcase() {
           <div className="font-jp mb-2 text-sm tracking-wider text-chakra">
             キャラクター — <GlitchTranslation textKey="heroes" speed={30} />
           </div>
-          <h2 className={`text-5xl md:text-6xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+          <h2 className={`text-3xl sm:text-5xl md:text-6xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
             <ShatterText text={t('ICONIC', lang)} className="text-white" charClassName="inline-block" />{' '}
             <ShatterText text={t('CHARACTERS', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" delay={0.15} />
           </h2>
@@ -295,7 +298,7 @@ export default function CharacterShowcase() {
           {/* scrollable card row */}
           <div
             ref={scrollRef}
-            className="char3d-scroll hide-scrollbar flex gap-8 overflow-x-auto overflow-y-visible px-4 pb-16 pt-4"
+            className="char3d-scroll hide-scrollbar flex gap-4 overflow-x-auto overflow-y-visible px-4 pb-16 pt-4 sm:gap-6 md:gap-8"
           >
             {CHARS.map((ch, i) => (
               <Card3D key={ch.name} ch={ch} index={i} />
