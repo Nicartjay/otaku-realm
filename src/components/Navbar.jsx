@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import ThemeSwitch from './ThemeSwitch.jsx'
+import LanguageSwitch from './LanguageSwitch.jsx'
+import GlitchTranslation from './GlitchTranslation.jsx'
 
 const NAV = [
   ['Home', 'hero'],
@@ -62,18 +64,19 @@ export default function Navbar() {
         <nav className="hidden gap-8 md:flex">
           {NAV.map(([l, id]) => (
             <button
-              key={l}
+              key={id}
               onClick={() => goSection(id)}
               data-cursor="hover"
               className="focus-ring group relative text-sm uppercase tracking-[0.3em] text-white/80 transition hover:text-flame"
             >
-              {l}
+              <GlitchTranslation textKey={l} speed={30} />
               <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-flame transition-all group-hover:w-full" />
             </button>
           ))}
         </nav>
 
         <div className="flex items-center gap-2 md:gap-3">
+          <LanguageSwitch />
           <ThemeSwitch />
 
           <button
@@ -108,13 +111,13 @@ export default function Navbar() {
           >
             <ul className="flex flex-col px-6 py-4">
               {NAV.map(([l, id]) => (
-                <li key={l}>
+                <li key={id}>
                   <button
                     onClick={() => goSection(id)}
                     data-cursor="hover"
                     className="focus-ring block w-full py-3 text-left font-display tracking-wider text-white/90"
                   >
-                    {l}
+                    <GlitchTranslation textKey={l} speed={30} />
                   </button>
                 </li>
               ))}

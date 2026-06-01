@@ -1,4 +1,4 @@
-import Hero from '../components/Hero.jsx'
+import HyperScroll from '../components/HyperScroll.jsx'
 import FeaturedScroll from '../components/FeaturedScroll.jsx'
 import FeaturedAnime from '../components/FeaturedAnime.jsx'
 import CharacterShowcase from '../components/CharacterShowcase.jsx'
@@ -8,7 +8,7 @@ import QuotesCarousel from '../components/QuotesCarousel.jsx'
 export default function Home() {
   return (
     <>
-      <Hero />
+      <HyperScroll />
       <FeaturedScroll />
       <FeaturedAnime />
       <CharacterShowcase />

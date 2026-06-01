@@ -1,45 +1,50 @@
 import { motion } from 'framer-motion'
+import GlitchTranslation from './GlitchTranslation.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t as tr } from '../data/translations.js'
 
 const TIMELINE = [
   {
     year: '1963',
-    title: 'Astro Boy takes flight',
-    text: 'Osamu Tezuka\'s Astro Boy launches the modern era of TV anime.',
+    titleKey: 'Astro Boy takes flight',
+    textKey: 'Astro Boy timeline',
     color: '#ff3b3b',
   },
   {
     year: '1988',
-    title: 'Akira changes everything',
-    text: 'Otomo\'s Akira proves anime can be cinema. The world takes notice.',
+    titleKey: 'Akira changes everything',
+    textKey: 'Akira timeline',
     color: '#ffb703',
   },
   {
     year: '1997',
-    title: 'Pokémon goes global',
-    text: 'Pocket Monsters becomes the gateway anime for a generation.',
+    titleKey: 'Pokémon goes global',
+    textKey: 'Pokemon timeline',
     color: '#00e5ff',
   },
   {
     year: '2002',
-    title: 'Naruto begins',
-    text: 'Believe it. The Hidden Leaf raises a worldwide ninja army.',
+    titleKey: 'Naruto begins',
+    textKey: 'Naruto timeline',
     color: '#9b5de5',
   },
   {
     year: '2013',
-    title: 'Walls fall in Attack on Titan',
-    text: 'A new dark age of anime storytelling shakes the medium.',
+    titleKey: 'Walls fall in Attack on Titan',
+    textKey: 'AoT timeline',
     color: '#ff5ea8',
   },
   {
     year: '2020',
-    title: 'Demon Slayer breaks records',
-    text: 'Mugen Train becomes the highest-grossing Japanese film of all time.',
+    titleKey: 'Demon Slayer breaks records',
+    textKey: 'DS timeline',
     color: '#ff3b3b',
   },
 ]
 
 export default function Timeline() {
+  const { lang } = useLanguage()
+
   return (
     <section id="about" className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
@@ -51,11 +56,11 @@ export default function Timeline() {
           className="mb-16 text-center"
         >
           <div className="font-jp mb-2 text-sm tracking-wider text-sakura">
-            歴史 — history
+            歴史 — <GlitchTranslation textKey="history" speed={30} />
           </div>
           <h2 className="font-display text-5xl md:text-6xl">
-            <span className="gradient-shonen animate-sweep">SAGA</span>{' '}
-            <span className="text-white">OF THE MEDIUM</span>
+            <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="SAGA" speed={40} /></span>{' '}
+            <span className="text-white"><GlitchTranslation textKey="OF THE MEDIUM" speed={35} /></span>
           </h2>
         </motion.div>
 
@@ -64,11 +69,11 @@ export default function Timeline() {
           <div className="absolute left-4 top-0 h-full w-1 rounded-full bg-gradient-to-b from-flame via-sun to-flame md:left-1/2 md:-translate-x-1/2" />
 
           <div className="space-y-14">
-            {TIMELINE.map((t, i) => {
+            {TIMELINE.map((item, i) => {
               const left = i % 2 === 0
               return (
                 <motion.div
-                  key={t.year}
+                  key={item.year}
                   initial={{ opacity: 0, x: left ? -60 : 60 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-80px' }}
@@ -81,8 +86,8 @@ export default function Timeline() {
                   <span
                     className="absolute left-4 top-6 z-10 h-4 w-4 -translate-x-1/2 rounded-full md:left-1/2"
                     style={{
-                      background: t.color,
-                      boxShadow: `0 0 18px ${t.color}, 0 0 40px ${t.color}`,
+                      background: item.color,
+                      boxShadow: `0 0 18px ${item.color}, 0 0 40px ${item.color}`,
                     }}
                   />
 
@@ -92,19 +97,21 @@ export default function Timeline() {
                     } ml-12 md:ml-0`}
                     data-cursor="hover"
                     style={{
-                      boxShadow: `0 0 0 1px ${t.color}33, 0 20px 40px ${t.color}22`,
+                      boxShadow: `0 0 0 1px ${item.color}33, 0 20px 40px ${item.color}22`,
                     }}
                   >
                     <div
                       className="font-display text-4xl"
-                      style={{ color: t.color }}
+                      style={{ color: item.color }}
                     >
-                      {t.year}
+                      {item.year}
                     </div>
                     <h3 className="mt-1 font-display text-xl text-white">
-                      {t.title}
+                      <GlitchTranslation textKey={item.titleKey} speed={30} />
                     </h3>
-                    <p className="mt-2 text-sm text-white/70">{t.text}</p>
+                    <p className="mt-2 text-sm text-white/70">
+                      <GlitchTranslation textKey={item.textKey} speed={18} />
+                    </p>
                   </div>
 
                   {/* spacer to keep grid balanced */}

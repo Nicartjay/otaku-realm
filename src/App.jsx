@@ -13,6 +13,7 @@ import Footer from './components/Footer.jsx'
 import Home from './pages/Home.jsx'
 import AnimeDetail from './pages/AnimeDetail.jsx'
 import { CursorThemeProvider } from './context/CursorThemeContext.jsx'
+import { LanguageProvider } from './context/LanguageContext.jsx'
 
 function Loader({ onDone }) {
   const [progress, setProgress] = useState(0)
@@ -92,6 +93,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <LanguageProvider>
       <CursorThemeProvider>
         <Cursor />
         <AnimatePresence>
@@ -111,6 +113,7 @@ export default function App() {
           <Footer />
         </motion.main>
       </CursorThemeProvider>
+      </LanguageProvider>
     </BrowserRouter>
   )
 }

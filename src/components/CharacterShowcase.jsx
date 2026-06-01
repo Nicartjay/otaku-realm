@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { CornerDownRightIcon } from './icons/ui.jsx'
+import GlitchTranslation from './GlitchTranslation.jsx'
 
 /**
  * Real character photos sourced from MyAnimeList CDN
@@ -62,6 +63,51 @@ const CHARS = [
     image:
       'https://cdn.myanimelist.net/images/characters/9/310307.jpg',
   },
+  {
+    name: 'Son Goku',
+    title: 'Saiyan Warrior',
+    aura: '#f59e0b',
+    quote: '"I am the hope of the universe!"',
+    initial: '悟',
+    image:
+      'https://cdn.myanimelist.net/images/characters/15/72546.jpg',
+  },
+  {
+    name: 'Edward Elric',
+    title: 'Fullmetal Alchemist',
+    aura: '#dc2626',
+    quote: '"A lesson without pain is meaningless."',
+    initial: '鋼',
+    image:
+      'https://cdn.myanimelist.net/images/characters/9/72533.jpg',
+  },
+  {
+    name: 'Light Yagami',
+    title: 'God of the New World',
+    aura: '#6b21a8',
+    quote: '"I am justice!"',
+    initial: '月',
+    image:
+      'https://cdn.myanimelist.net/images/characters/6/63870.jpg',
+  },
+  {
+    name: 'Kirito',
+    title: 'Black Swordsman',
+    aura: '#3b82f6',
+    quote: '"There is one thing I\'ve learned here — to keep fighting."',
+    initial: '剣',
+    image:
+      'https://cdn.myanimelist.net/images/characters/7/204821.jpg',
+  },
+  {
+    name: 'Ken Kaneki',
+    title: 'One-Eyed King',
+    aura: '#ef4444',
+    quote: '"What is 1000 minus 7?"',
+    initial: '喰',
+    image:
+      'https://cdn.myanimelist.net/images/characters/15/307255.jpg',
+  },
 ]
 
 export default function CharacterShowcase() {
@@ -86,11 +132,11 @@ export default function CharacterShowcase() {
           className="mb-14 text-center"
         >
           <div className="font-jp mb-2 text-sm tracking-wider text-chakra">
-            キャラクター — heroes
+            キャラクター — <GlitchTranslation textKey="heroes" speed={30} />
           </div>
           <h2 className="font-display text-5xl md:text-6xl">
-            <span className="text-white">ICONIC</span>{' '}
-            <span className="gradient-shonen animate-sweep">CHARACTERS</span>
+            <span className="text-white"><GlitchTranslation textKey="ICONIC" speed={40} /></span>{' '}
+            <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="CHARACTERS" speed={40} /></span>
           </h2>
         </motion.div>
 
@@ -185,10 +231,10 @@ export default function CharacterShowcase() {
                 className="mb-2 inline-flex items-center gap-2 text-xs uppercase tracking-[0.4em]"
                 style={{ color: ch.aura }}
               >
-                <CornerDownRightIcon size={12} /> now featuring
+                <CornerDownRightIcon size={12} /> <GlitchTranslation textKey="now featuring" speed={30} />
               </div>
               <h3 className="font-display text-5xl text-white">{ch.name}</h3>
-              <div className="mt-1 text-white/60">{ch.title}</div>
+              <div className="mt-1 text-white/60"><GlitchTranslation textKey={ch.title} speed={25} /></div>
               <p className="mt-6 max-w-md text-lg italic text-white/80">
                 {ch.quote}
               </p>

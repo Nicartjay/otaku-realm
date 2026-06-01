@@ -1300,6 +1300,566 @@ export const MAL_DATA = {
     }
   ]
 },
+"dragon-ball-z": {
+  "slug": "dragon-ball-z",
+  "malId": 813,
+  "malUrl": "https://myanimelist.net/anime/813/Dragon_Ball_Z",
+  "titleEnglish": "Dragon Ball Z",
+  "titleJapanese": "ドラゴンボールZ",
+  "synopsis": "Five years after winning the World Martial Arts tournament, Gokuu is now living a peaceful life with his wife and son. This changes, however, with the arrival of a mysterious enemy named Raditz who presents himself as Gokuu's long-lost brother. He reveals that Gokuu is a warrior from the once powerful but now virtually extinct Saiyan race, whose homeworld was completely annihilated. When he was sent to Earth as a baby, Gokuu's� original purpose was to conquer and destroy the planet; but after suffering amnesia from a head injury, his violent and savage nature changed to one of a kind and well-mannered boy, eventually growing up to become Earth's greatest defender.",
+  "background": "Dragon Ball Z is the sequel to the original Dragon Ball anime. It was produced by Toei Animation and ran for 291 episodes from April 1989 to January 1996. The series is often credited with introducing anime to Western audiences on a massive scale.",
+  "info": {
+    "type": "TV",
+    "episodes": 291,
+    "status": "Finished Airing",
+    "aired": "Apr 26, 1989 to Jan 31, 1996",
+    "season": "spring 1989",
+    "duration": "24 min per ep",
+    "rating": "PG-13 - Teens 13 or older",
+    "score": 8.16,
+    "scoredBy": 889547,
+    "rank": 486,
+    "popularity": 70,
+    "members": 1902187,
+    "favorites": 45723,
+    "source": "Manga",
+    "studios": ["Toei Animation"],
+    "producers": ["Fuji TV", "Bird Studio", "Shueisha"],
+    "licensors": ["Funimation"],
+    "genres": ["Action", "Adventure", "Comedy"],
+    "themes": ["Martial Arts"],
+    "demographics": ["Shounen"]
+  },
+  "openings": [
+    "\"Cha-La Head-Cha-La\" by Hironobu Kageyama",
+    "\"We Gotta Power\" by Hironobu Kageyama"
+  ],
+  "endings": [
+    "\"Detekoi Tobikiri Zenkai Power!\" by MANNA",
+    "\"Bokutachi wa Tenshi Datta\" by Kageyama Hironobu",
+    "\"Boku-tachi wa Tenshi Datta (僕達は天使だった)\" by Hironobu Kageyama"
+  ],
+  "characters": [
+    {
+      "name": "Son, Gokuu",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/15/72546.jpg",
+      "malUrl": "https://myanimelist.net/character/246/Gokuu_Son",
+      "voiceActors": [
+        { "name": "Nozawa, Masako", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/39581.jpg" },
+        { "name": "Schemmel, Sean", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/30191.jpg" }
+      ]
+    },
+    {
+      "name": "Vegeta",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/14/86185.jpg",
+      "malUrl": "https://myanimelist.net/character/913/Vegeta",
+      "voiceActors": [
+        { "name": "Horikawa, Ryou", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/42874.jpg" },
+        { "name": "Sabat, Christopher R.", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/39588.jpg" }
+      ]
+    },
+    {
+      "name": "Son, Gohan",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/6/368627.jpg?s=0123456789abcdef",
+      "malUrl": "https://myanimelist.net/character/761/Gohan_Son",
+      "voiceActors": [
+        { "name": "Nozawa, Masako", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/39581.jpg" },
+        { "name": "Nadolny, Stephanie", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/54488.jpg" }
+      ]
+    },
+    {
+      "name": "Piccolo",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/10/78871.jpg",
+      "malUrl": "https://myanimelist.net/character/458/Piccolo",
+      "voiceActors": [
+        { "name": "Furukawa, Toshio", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/1/75521.jpg" },
+        { "name": "Sabat, Christopher R.", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/3/809.jpg" }
+      ]
+    }
+  ]
+},
+"fullmetal-alchemist": {
+  "slug": "fullmetal-alchemist",
+  "malId": 5114,
+  "malUrl": "https://myanimelist.net/anime/5114/Fullmetal_Alchemist__Brotherhood",
+  "titleEnglish": "Fullmetal Alchemist: Brotherhood",
+  "titleJapanese": "鋼の錬金術師 FULLMETAL ALCHEMIST",
+  "synopsis": "After a horrific alchemy experiment goes wrong in the Elric household, brothers Edward and Alphonse are left in a catastrophic new reality. Ignoring the alchemical principle banning human transmutation, the boys attempted to bring their recently deceased mother back to life. Instead, they suffered brutal personal loss: Alphonse's entire body and Edward's left leg, plus his right arm when he tried to rescue his brother. Fitted with mechanical limbs, Edward becomes a state alchemist, seeking the one thing that can restore his and his brother's bodies: the fabled Philosopher's Stone.",
+  "background": "Fullmetal Alchemist: Brotherhood is the second anime adaptation of Hiromu Arakawa's manga. Unlike the first anime, it follows the manga's storyline. It was awarded the Best TV anime award at the 2009 Tokyo Anime Award Festival.",
+  "info": {
+    "type": "TV",
+    "episodes": 64,
+    "status": "Finished Airing",
+    "aired": "Apr 5, 2009 to Jul 4, 2010",
+    "season": "spring 2009",
+    "duration": "24 min per ep",
+    "rating": "R - 17+ (violence & profanity)",
+    "score": 9.1,
+    "scoredBy": 2159148,
+    "rank": 1,
+    "popularity": 3,
+    "members": 3340021,
+    "favorites": 221050,
+    "source": "Manga",
+    "studios": ["Bones"],
+    "producers": ["Aniplex", "Square Enix", "Mainichi Broadcasting System", "Shogakukan-Shueisha Productions"],
+    "licensors": ["Funimation", "Aniplex of America"],
+    "genres": ["Action", "Adventure", "Drama", "Fantasy"],
+    "themes": ["Military"],
+    "demographics": ["Shounen"]
+  },
+  "openings": [
+    "\"Again\" by YUI",
+    "\"Hologram\" by NICO Touches the Walls",
+    "\"Golden Time Lover\" by Sukima Switch",
+    "\"Period\" by CHEMISTRY",
+    "\"Rain\" by SID"
+  ],
+  "endings": [
+    "\"Uso (嘘)\" by SID",
+    "\"LET IT OUT\" by Miho Fukuhara",
+    "\"Tsunaida Te (つないだ手)\" by Lil'B",
+    "\"Shunkan Sentimental (瞬間センチメンタル)\" by SCANDAL",
+    "\"RAY OF LIGHT\" by Shoko Nakagawa"
+  ],
+  "characters": [
+    {
+      "name": "Elric, Edward",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/9/72533.jpg?s=0123456789",
+      "malUrl": "https://myanimelist.net/character/11/Edward_Elric",
+      "voiceActors": [
+        { "name": "Park, Romi", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/29839.jpg" },
+        { "name": "Clinkenbeard, Colleen", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/54602.jpg" }
+      ]
+    },
+    {
+      "name": "Elric, Alphonse",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/7/284129.jpg?s=abc456",
+      "malUrl": "https://myanimelist.net/character/12/Alphonse_Elric",
+      "voiceActors": [
+        { "name": "Kugimiya, Rie", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/63374.jpg" },
+        { "name": "Haberkorn, Todd", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/90116.jpg" }
+      ]
+    },
+    {
+      "name": "Mustang, Roy",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/11/510227.jpg",
+      "malUrl": "https://myanimelist.net/character/68/Roy_Mustang",
+      "voiceActors": [
+        { "name": "Miki, Shinichiro", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/70845.jpg" },
+        { "name": "Willingham, Travis", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/88518.jpg" }
+      ]
+    },
+    {
+      "name": "Hawkeye, Riza",
+      "role": "Supporting",
+      "image": "https://cdn.myanimelist.net/images/characters/13/73469.jpg",
+      "malUrl": "https://myanimelist.net/character/69/Riza_Hawkeye",
+      "voiceActors": [
+        { "name": "Orikasa, Fumiko", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/57226.jpg" },
+        { "name": "Strazicich, Colleen", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/12539.jpg" }
+      ]
+    }
+  ]
+},
+"death-note": {
+  "slug": "death-note",
+  "malId": 1535,
+  "malUrl": "https://myanimelist.net/anime/1535/Death_Note",
+  "titleEnglish": "Death Note",
+  "titleJapanese": "デスノート",
+  "synopsis": "Brutal murders, petty thefts, and senseless violence pollute the human world. In contrast, the Shinigami realm is a humdrum, unchanging gambling den. The Shinigami Ryuk, bored by the dull lifestyle of the Shinigami realm, drops his Death Note into the human world to see if it stirs up anything interesting. His plan succeeds beyond anything he had ever imagined when the Death Note is found by high school student Light Yagami. Although initially terrified of the Death Note's divine abilities, Light quickly begins scheming: with the power to kill anyone simply by writing their name, he could purge the world of evil.",
+  "background": "Death Note was adapted from Tsugumi Ohba and Takeshi Obata's manga of the same name. It has been called one of the best anime series of all time by numerous publications. The franchise includes films, musicals, and a live-action series.",
+  "info": {
+    "type": "TV",
+    "episodes": 37,
+    "status": "Finished Airing",
+    "aired": "Oct 4, 2006 to Jun 27, 2007",
+    "season": "fall 2006",
+    "duration": "23 min per ep",
+    "rating": "R - 17+ (violence & profanity)",
+    "score": 8.62,
+    "scoredBy": 2498761,
+    "rank": 79,
+    "popularity": 1,
+    "members": 4176981,
+    "favorites": 173222,
+    "source": "Manga",
+    "studios": ["Madhouse"],
+    "producers": ["VAP", "Konami", "Shueisha", "Madhouse"],
+    "licensors": ["VIZ Media"],
+    "genres": ["Supernatural", "Suspense"],
+    "themes": ["Psychological"],
+    "demographics": ["Shounen"]
+  },
+  "openings": [
+    "\"the WORLD\" by Nightmare",
+    "\"What's up, people?!\" by Maximum the Hormone"
+  ],
+  "endings": [
+    "\"Alumina\" by Nightmare",
+    "\"Zetsubou Billy (絶望ビリー)\" by Maximum the Hormone"
+  ],
+  "characters": [
+    {
+      "name": "Yagami, Light",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/6/63870.jpg",
+      "malUrl": "https://myanimelist.net/character/80/Light_Yagami",
+      "voiceActors": [
+        { "name": "Miyano, Mamoru", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/1/66414.jpg" },
+        { "name": "Drummond, Brad", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/3655.jpg" }
+      ]
+    },
+    {
+      "name": "L Lawliet",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/10/249647.jpg",
+      "malUrl": "https://myanimelist.net/character/71/L_Lawliet",
+      "voiceActors": [
+        { "name": "Yamaguchi, Kappei", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/74474.jpg" },
+        { "name": "Vance, Alessandro", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/44392.jpg" }
+      ]
+    },
+    {
+      "name": "Ryuk",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/9/111035.jpg",
+      "malUrl": "https://myanimelist.net/character/82/Ryuk",
+      "voiceActors": [
+        { "name": "Nakamura, Shidou", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/1/44589.jpg" },
+        { "name": "Drummond, Brian", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/10308.jpg" }
+      ]
+    },
+    {
+      "name": "Amane, Misa",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/8/110969.jpg",
+      "malUrl": "https://myanimelist.net/character/83/Misa_Amane",
+      "voiceActors": [
+        { "name": "Hirano, Aya", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/1/49688.jpg" },
+        { "name": "Tipton, Shannon Chan-Kent", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/3/40484.jpg" }
+      ]
+    }
+  ]
+},
+"sword-art-online": {
+  "slug": "sword-art-online",
+  "malId": 11757,
+  "malUrl": "https://myanimelist.net/anime/11757/Sword_Art_Online",
+  "titleEnglish": "Sword Art Online",
+  "titleJapanese": "ソードアート・オンライン",
+  "synopsis": "In the year 2022, virtual reality has progressed by leaps and bounds, and a massive online role-playing game called Sword Art Online (SAO) is launched. With the aid of \"NerveGear\" technology, players can control their avatars within the game using nothing but their own thoughts. However, in a cruel turn of events, the players soon realize they cannot log out; the game's creator has trapped them in his new world until they complete all one hundred levels of the game.",
+  "background": "Sword Art Online was adapted from the light novel series written by Reki Kawahara. It has become one of the best-selling light novel series in history with over 30 million copies sold worldwide.",
+  "info": {
+    "type": "TV",
+    "episodes": 25,
+    "status": "Finished Airing",
+    "aired": "Jul 8, 2012 to Dec 23, 2012",
+    "season": "summer 2012",
+    "duration": "23 min per ep",
+    "rating": "PG-13 - Teens 13 or older",
+    "score": 7.2,
+    "scoredBy": 1856220,
+    "rank": 3461,
+    "popularity": 4,
+    "members": 3204867,
+    "favorites": 77118,
+    "source": "Light novel",
+    "studios": ["A-1 Pictures"],
+    "producers": ["Aniplex", "ASCII Media Works", "Bandai Namco Entertainment"],
+    "licensors": ["Aniplex of America"],
+    "genres": ["Action", "Adventure", "Fantasy", "Romance"],
+    "themes": ["Video Game"],
+    "demographics": []
+  },
+  "openings": [
+    "\"crossing field\" by LiSA",
+    "\"INNOCENCE\" by Eir Aoi"
+  ],
+  "endings": [
+    "\"Yume Sekai (ユメセカイ)\" by Haruka Tomatsu",
+    "\"Overfly\" by Luna Haruna"
+  ],
+  "characters": [
+    {
+      "name": "Kirigaya, Kazuto",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/7/204821.jpg?s=abc123sao",
+      "malUrl": "https://myanimelist.net/character/36765/Kazuto_Kirigaya",
+      "voiceActors": [
+        { "name": "Matsuoka, Yoshitsugu", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/29853.jpg" },
+        { "name": "Papenbrook, Bryce", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/37187.jpg" }
+      ]
+    },
+    {
+      "name": "Yuuki, Asuna",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/15/262053.jpg?s=def456sao",
+      "malUrl": "https://myanimelist.net/character/36828/Asuna_Yuuki",
+      "voiceActors": [
+        { "name": "Tomatsu, Haruka", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/76640.jpg" },
+        { "name": "Rial, Cherami", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/47505.jpg" }
+      ]
+    },
+    {
+      "name": "Shinozaki, Rika",
+      "role": "Supporting",
+      "image": "https://cdn.myanimelist.net/images/characters/3/218147.jpg?s=ghi789sao",
+      "malUrl": "https://myanimelist.net/character/55643/Rika_Shinozaki",
+      "voiceActors": [
+        { "name": "Takagaki, Ayahi", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/5818.jpg" },
+        { "name": "Leigh, Sarah Anne", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/47505.jpg" }
+      ]
+    },
+    {
+      "name": "Ayano, Keiko",
+      "role": "Supporting",
+      "image": "https://cdn.myanimelist.net/images/characters/11/153931.jpg",
+      "malUrl": "https://myanimelist.net/character/55645/Keiko_Ayano",
+      "voiceActors": [
+        { "name": "Hidaka, Rina", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/1/80136.jpg" },
+        { "name": "Bartley, Christine Marie", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/47505.jpg" }
+      ]
+    }
+  ]
+},
+"tokyo-ghoul": {
+  "slug": "tokyo-ghoul",
+  "malId": 22319,
+  "malUrl": "https://myanimelist.net/anime/22319/Tokyo_Ghoul",
+  "titleEnglish": "Tokyo Ghoul",
+  "titleJapanese": "東京喰種トーキョーグール",
+  "synopsis": "A sinister threat is invading Tokyo: flesh-eating \"ghouls\" who appear identical to humans and blend into their population. Reserved combative sophomore Ken Kaneki has a chance encounter with one such ghoul, and a resulting violent assault leaves him on the brink of death. He awakens to discover that he has undergone a surgery that transformed him into a half-ghoul. In his new form, Kaneki must learn to adapt to ghoul society while also maintaining his previous lifestyle.",
+  "background": "Tokyo Ghoul was adapted from Sui Ishida's manga series. The manga has sold over 47 million copies worldwide. The anime received a live-action film adaptation in 2017.",
+  "info": {
+    "type": "TV",
+    "episodes": 12,
+    "status": "Finished Airing",
+    "aired": "Jul 4, 2014 to Sep 19, 2014",
+    "season": "summer 2014",
+    "duration": "24 min per ep",
+    "rating": "R - 17+ (violence & profanity)",
+    "score": 7.79,
+    "scoredBy": 1566783,
+    "rank": 1030,
+    "popularity": 9,
+    "members": 2724982,
+    "favorites": 68461,
+    "source": "Manga",
+    "studios": ["Pierrot"],
+    "producers": ["Marvelous AQL", "TC Entertainment", "Shueisha"],
+    "licensors": ["Funimation"],
+    "genres": ["Action", "Supernatural", "Horror"],
+    "themes": ["Gore", "Psychological"],
+    "demographics": ["Seinen"]
+  },
+  "openings": [
+    "\"unravel\" by TK from Ling Tosite Sigure"
+  ],
+  "endings": [
+    "\"Seijatachi (聖者たち)\" by People In The Box"
+  ],
+  "characters": [
+    {
+      "name": "Kaneki, Ken",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/15/307255.jpg",
+      "malUrl": "https://myanimelist.net/character/87275/Ken_Kaneki",
+      "voiceActors": [
+        { "name": "Hanae, Natsuki", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/33923.jpg" },
+        { "name": "Tatum, Austin", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/1/33509.jpg" }
+      ]
+    },
+    {
+      "name": "Kirishima, Touka",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/6/211799.jpg",
+      "malUrl": "https://myanimelist.net/character/87281/Touka_Kirishima",
+      "voiceActors": [
+        { "name": "Amamiya, Sora", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/1/85515.jpg" },
+        { "name": "Bringas, Brina Palencia", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/47505.jpg" }
+      ]
+    },
+    {
+      "name": "Kamishiro, Rize",
+      "role": "Supporting",
+      "image": "https://cdn.myanimelist.net/images/characters/9/212769.jpg",
+      "malUrl": "https://myanimelist.net/character/87283/Rize_Kamishiro",
+      "voiceActors": [
+        { "name": "Hanazawa, Kana", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/2/86546.jpg" },
+        { "name": "Tiffany, Brina", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/47505.jpg" }
+      ]
+    },
+    {
+      "name": "Yoshimura",
+      "role": "Supporting",
+      "image": "https://cdn.myanimelist.net/images/characters/3/315868.jpg",
+      "malUrl": "https://myanimelist.net/character/91455/Yoshimura",
+      "voiceActors": [
+        { "name": "Sugou, Takayuki", "language": "Japanese", "image": "https://cdn.myanimelist.net/images/voiceactors/3/54045.jpg" },
+        { "name": "Rial, J. Michael", "language": "English", "image": "https://cdn.myanimelist.net/images/voiceactors/2/47505.jpg" }
+      ]
+    }
+  ]
+},
+"detective-conan": {
+  "slug": "detective-conan",
+  "malId": 235,
+  "malUrl": "https://myanimelist.net/anime/235/Meitantei_Conan",
+  "titleEnglish": "Case Closed",
+  "titleJapanese": "名探偵コナン",
+  "synopsis": "Shinichi Kudou, a high school student of astounding talent in detective work, is well known for having solved several challenging cases. One day, when Shinichi spots two suspicious men and decides to follow them, he inadvertently becomes witness to a disturbing illegal activity. Unfortunately, he is caught in the act, so the men dose him with an experimental drug formulated by their criminal organization, leaving him to his death. However, to his own astonishment, Shinichi lives to see another day, but now in the body of a seven-year-old child. Perfectly preserving his original intelligence, he hides his real identity from everyone, including his childhood friend Ran Mouri and her father, private detective Kogorou Mouri. To this end, he takes on the alias of Conan Edogawa, inspired by the mystery writers Arthur Conan Doyle and Ranpo Edogawa.",
+  "background": "In 2003, FUNimation licensed the first 104 episodes for North American production under the name Case Closed. In 2014, Crunchyroll obtained a license to stream simulcast episodes starting with episode 754. The manga has sold over 270 million copies, making it the third best-selling manga series of all time.",
+  "info": {
+    "type": "TV",
+    "episodes": null,
+    "status": "Currently Airing",
+    "aired": "Jan 8, 1996 to ?",
+    "season": "winter 1996",
+    "duration": "24 min per ep",
+    "rating": "PG-13 - Teens 13 or older",
+    "score": 8.18,
+    "scoredBy": 170332,
+    "rank": 472,
+    "popularity": 728,
+    "members": 378587,
+    "favorites": 16115,
+    "source": "Manga",
+    "studios": [
+      "TMS Entertainment"
+    ],
+    "producers": [
+      "Yomiuri Telecasting",
+      "Shogakukan",
+      "Audio Planning U",
+      "Tokyo Movie",
+      "Polydor Records"
+    ],
+    "licensors": [
+      "Funimation",
+      "Crunchyroll"
+    ],
+    "genres": [
+      "Adventure",
+      "Comedy",
+      "Mystery"
+    ],
+    "themes": [
+      "Detective"
+    ],
+    "demographics": [
+      "Shounen"
+    ]
+  },
+  "openings": [
+    "\"Mune ga Dokidoki (胸がドキドキ)\" by The High-Lows",
+    "\"Feel Your Heart\" by Velvet Garden",
+    "\"Nazo (謎)\" by Miho Komatsu",
+    "\"Unmei no Roulette Mawashite (運命のルーレット廻して)\" by Zard",
+    "\"TRUTH ~A Great Detective of Love~\" by TWO-MIX",
+    "\"Girigiri chop\" by B'z",
+    "\"Mysterious Eyes\" by Garnet Crow",
+    "\"Koi wa Thrill, Shock, Suspense (恋はスリル、ショック、サスペンス)\" by Rina Aiuchi",
+    "\"Destiny\" by Matsuda Seiko",
+    "\"Winter Bells\" by Mai Kuraki",
+    "\"I can't stop my love for you♥\" by Rina Aiuchi",
+    "\"Kaze no Lalala (風のららら)\" by Mai Kuraki"
+  ],
+  "endings": [
+    "\"STEP BY STEP\" by Ziggy",
+    "\"Meikyuu no Lovers (迷宮のラヴァーズ)\" by Heath",
+    "\"Hikari to Kage no Roman (光と影のロマン)\" by U-ka Saegusa in dB",
+    "\"Kimi ga Inai Natsu (君がいない夏)\" by DEEN",
+    "\"Negai Goto Hitotsu Dake (願い事ひとつだけ)\" by Miho Komatsu",
+    "\"Koori no Ue ni Tatsu You ni (氷の上に立つように)\" by Miho Komatsu",
+    "\"Still for your love\" by Rumania Montevideo",
+    "\"Free Magic\" by Wag",
+    "\"Secret of my heart\" by Mai Kuraki",
+    "\"Natsuyasumi (夏の幻)\" by Garnet Crow"
+  ],
+  "characters": [
+    {
+      "name": "Edogawa, Conan",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/15/264961.jpg",
+      "malUrl": "https://myanimelist.net/character/2/Conan_Edogawa",
+      "voiceActors": [
+        {
+          "name": "Takayama, Minami",
+          "language": "Japanese",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/3/63419.jpg"
+        },
+        {
+          "name": "Clinkenbeard, Colleen",
+          "language": "English",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/1/35525.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Mouri, Ran",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/11/253723.jpg",
+      "malUrl": "https://myanimelist.net/character/3/Ran_Mouri",
+      "voiceActors": [
+        {
+          "name": "Yamazaki, Wakana",
+          "language": "Japanese",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/2/17135.jpg"
+        },
+        {
+          "name": "Palencia, Monica",
+          "language": "English",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/3/43568.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Mouri, Kogorou",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/5/30624.jpg",
+      "malUrl": "https://myanimelist.net/character/4/Kogorou_Mouri",
+      "voiceActors": [
+        {
+          "name": "Koyama, Rikiya",
+          "language": "Japanese",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/2/73614.jpg"
+        },
+        {
+          "name": "Sabat, Christopher R.",
+          "language": "English",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/1/78530.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Haibara, Ai",
+      "role": "Main",
+      "image": "https://cdn.myanimelist.net/images/characters/3/512788.jpg",
+      "malUrl": "https://myanimelist.net/character/5/Ai_Haibara",
+      "voiceActors": [
+        {
+          "name": "Hayashibara, Megumi",
+          "language": "Japanese",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/2/68487.jpg"
+        },
+        {
+          "name": "Tiffany, Brina",
+          "language": "English",
+          "image": "https://cdn.myanimelist.net/images/voiceactors/1/65561.jpg"
+        }
+      ]
+    }
+  ]
+},
 }
 
 export function getMal(slug) {

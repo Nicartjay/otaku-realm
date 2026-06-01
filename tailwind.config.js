@@ -28,7 +28,7 @@ export default {
       fontFamily: {
         display: ['"Bangers"', 'system-ui', 'sans-serif'],
         body: ['"Poppins"', 'system-ui', 'sans-serif'],
-        jp: ['"Yuji Mai"', 'serif'],
+        jp: ['"x8y12pxDenkiChip"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       keyframes: {

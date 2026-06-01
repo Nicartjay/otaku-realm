@@ -48,7 +48,7 @@ function FlipLink({ href, children, icon, ...rest }) {
         aria-label={rest['aria-label']}
         target={isExternal ? '_blank' : undefined}
         rel={isExternal ? 'noopener noreferrer' : undefined}
-        className="focus-ring group inline-flex items-center gap-4 whitespace-nowrap font-display text-4xl uppercase tracking-wider text-white transition-colors hover:text-flame sm:text-6xl md:text-7xl lg:text-8xl"
+        className="focus-ring group inline-flex items-center gap-3 whitespace-nowrap font-display text-2xl uppercase tracking-wider text-white transition-colors hover:text-flame sm:text-3xl md:text-4xl lg:text-5xl"
         style={{ lineHeight: 0.85 }}
       >
         {icon ? <span className="shrink-0 text-white/70">{icon}</span> : null}
@@ -64,7 +64,7 @@ function FlipLink({ href, children, icon, ...rest }) {
       aria-label={rest['aria-label']}
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
-      className="focus-ring group relative inline-flex items-center gap-4 overflow-hidden whitespace-nowrap font-display text-4xl uppercase tracking-wider text-white sm:text-6xl md:text-7xl lg:text-8xl"
+      className="focus-ring group relative inline-flex items-center gap-3 overflow-hidden whitespace-nowrap font-display text-2xl uppercase tracking-wider text-white sm:text-3xl md:text-4xl lg:text-5xl"
       style={{ lineHeight: 0.85 }}
     >
       {icon ? (

@@ -2,10 +2,14 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import GlitchText from './GlitchText.jsx'
+import GlitchTranslation from './GlitchTranslation.jsx'
 import MagneticButton from './MagneticButton.jsx'
 import { SparkleIcon, ChevronDownIcon } from './icons/ui.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t } from '../data/translations.js'
 
 export default function Hero() {
+  const { lang } = useLanguage()
   const ref = useRef(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -82,17 +86,17 @@ export default function Hero() {
           className="mb-4 inline-flex items-center gap-2 rounded-full border border-flame/60 bg-ink/60 px-4 py-1 text-xs uppercase tracking-[0.4em] text-sun backdrop-blur"
         >
           <SparkleIcon size={12} className="text-sun" />
-          Otaku Realm
+          <GlitchTranslation textKey="Otaku Realm" speed={40} />
           <SparkleIcon size={12} className="text-sun" />
         </motion.div>
 
-        <h1 className="font-display text-7xl leading-none sm:text-8xl md:text-9xl">
-          <span className="gradient-shonen animate-sweep">
-            <GlitchText text="POWER" />
+        <h1 className="font-display text-7xl leading-none sm:text-8xl md:text-9xl pt-2">
+          <span className="gradient-shonen animate-sweep inline-block pb-1">
+            <GlitchTranslation textKey="POWER" speed={50} />
           </span>
           <br />
           <span className="text-stroke-white text-transparent">
-            <GlitchText text="UNLEASHED" />
+            <GlitchTranslation textKey="UNLEASHED" speed={50} />
           </span>
         </h1>
 
@@ -102,8 +106,7 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 0.7 }}
           className="mx-auto mt-6 max-w-xl text-base text-white/80 md:text-lg"
         >
-          A vibrant tribute to the worlds, heroes, and battles that shaped a
-          generation. Scroll. Hover. Awaken your inner main character.
+          <GlitchTranslation textKey={lang === 'jp' ? 'hero_desc' : 'hero_desc_en'} speed={20} />
         </motion.p>
 
         <motion.div
@@ -119,7 +122,7 @@ export default function Hero() {
             glowColor="rgba(255,255,255,0.45)"
             className="rounded-full bg-flame px-7 py-3 font-display text-lg tracking-wider text-ink shadow-[0_0_30px_rgba(255,45,85,0.5)]"
           >
-            ENTER REALM
+            <GlitchTranslation textKey="ENTER REALM" speed={40} />
           </MagneticButton>
           <MagneticButton
             href="#characters"
@@ -128,7 +131,7 @@ export default function Hero() {
             glowColor="rgba(255,201,60,0.35)"
             className="rounded-full border-2 border-sun px-7 py-3 font-display text-lg tracking-wider text-sun"
           >
-            MEET HEROES
+            <GlitchTranslation textKey="MEET HEROES" speed={40} />
           </MagneticButton>
         </motion.div>
       </motion.div>
@@ -140,7 +143,7 @@ export default function Hero() {
         transition={{ delay: 1.4, duration: 1.6, repeat: Infinity }}
         className="absolute bottom-8 left-1/2 flex -translate-x-1/2 items-center gap-2 text-xs uppercase tracking-[0.4em] text-white/60"
       >
-        scroll
+        <GlitchTranslation textKey="scroll" speed={40} />
         <ChevronDownIcon size={14} className="text-white/60" />
       </motion.div>
     </section>

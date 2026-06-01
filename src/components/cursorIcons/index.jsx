@@ -158,6 +158,156 @@ export function StrawHatIcon({ color = '#fbbf24', size = 22 }) {
   )
 }
 
+// ⚡ Dragon Ball Z — energy sphere
+export function EnergyIcon({ color = '#f59e0b', size = 22 }) {
+  return wrap(
+    <g>
+      <circle cx="0" cy="0" r="7" fill={color} opacity="0.85" />
+      <circle cx="0" cy="0" r="4" fill="#ffffff" opacity="0.7" />
+      {/* energy sparks */}
+      <line x1="0" y1="-9" x2="0" y2="-7" stroke={color} strokeWidth="1.2" />
+      <line x1="0" y1="7" x2="0" y2="9" stroke={color} strokeWidth="1.2" />
+      <line x1="-9" y1="0" x2="-7" y2="0" stroke={color} strokeWidth="1.2" />
+      <line x1="7" y1="0" x2="9" y2="0" stroke={color} strokeWidth="1.2" />
+      <line x1="-6" y1="-6" x2="-5" y2="-5" stroke={color} strokeWidth="1" />
+      <line x1="5" y1="-5" x2="6" y2="-6" stroke={color} strokeWidth="1" />
+    </g>,
+    size,
+    color
+  )
+}
+
+// ⚙️ FMA — transmutation circle
+export function TransmuteIcon({ color = '#dc2626', size = 22 }) {
+  return wrap(
+    <g>
+      <circle cx="0" cy="0" r="9" fill="none" stroke={color} strokeWidth="1.4" />
+      <circle cx="0" cy="0" r="5" fill="none" stroke={color} strokeWidth="1" opacity="0.7" />
+      {/* inner triangle */}
+      <polygon
+        points="0,-6 5.2,3 -5.2,3"
+        fill="none"
+        stroke={color}
+        strokeWidth="1.2"
+      />
+      {/* center dot */}
+      <circle cx="0" cy="0" r="1.5" fill={color} opacity="0.9" />
+    </g>,
+    size,
+    color
+  )
+}
+
+// 📓 Death Note — quill/pen
+export function QuillIcon({ color = '#6b21a8', size = 22 }) {
+  return wrap(
+    <g>
+      {/* feather body */}
+      <path
+        d="M -2 9 L 0 -8 C 2 -6, 5 -3, 4 2 C 3 5, 1 7, -2 9 Z"
+        fill={color}
+        opacity="0.9"
+      />
+      {/* spine */}
+      <line x1="0" y1="-8" x2="-1" y2="9" stroke="#ffffff" strokeWidth="0.6" opacity="0.5" />
+      {/* tip */}
+      <path
+        d="M -2 9 L -1 11 L 0 9"
+        fill="#ffffff"
+        opacity="0.8"
+      />
+    </g>,
+    size,
+    color
+  )
+}
+
+// ⚔️ SAO — crossed swords
+export function SwordsIcon({ color = '#3b82f6', size = 22 }) {
+  return wrap(
+    <g>
+      {/* left blade */}
+      <path
+        d="M -7 7 L 3 -7 L 4 -5 L -5 8 Z"
+        fill={color}
+        opacity="0.9"
+      />
+      {/* right blade */}
+      <path
+        d="M 7 7 L -3 -7 L -4 -5 L 5 8 Z"
+        fill="#60a5fa"
+        opacity="0.85"
+      />
+      {/* cross guard */}
+      <rect x="-3" y="4" width="6" height="1.5" rx="0.5" fill="#ffffff" opacity="0.7" />
+    </g>,
+    size,
+    color
+  )
+}
+
+// 👁️ Tokyo Ghoul — kakugan (ghoul eye)
+export function GhoulEyeIcon({ color = '#ef4444', size = 22 }) {
+  return wrap(
+    <g>
+      {/* eye shape */}
+      <path
+        d="M -9 0 C -5 -6, 5 -6, 9 0 C 5 6, -5 6, -9 0 Z"
+        fill="none"
+        stroke={color}
+        strokeWidth="1.5"
+      />
+      {/* iris */}
+      <circle cx="0" cy="0" r="4" fill={color} opacity="0.8" />
+      {/* pupil */}
+      <circle cx="0" cy="0" r="2" fill="#0f0f0f" />
+      {/* red veins */}
+      <path d="M -9 0 L -5 -1" stroke={color} strokeWidth="0.5" opacity="0.6" />
+      <path d="M 9 0 L 5 1" stroke={color} strokeWidth="0.5" opacity="0.6" />
+    </g>,
+    size,
+    color
+  )
+}
+
+// 🔍 Detective Conan — magnifying glass
+export function MagnifyIcon({ color = '#1e90ff', size = 22 }) {
+  return wrap(
+    <g>
+      {/* glass circle */}
+      <circle
+        cx="-2"
+        cy="-2"
+        r="6"
+        fill="none"
+        stroke={color}
+        strokeWidth="2"
+      />
+      {/* lens shine */}
+      <path
+        d="M -4 -5 C -2 -7, 1 -6, 2 -4"
+        fill="none"
+        stroke="#ffffff"
+        strokeWidth="1"
+        opacity="0.6"
+        strokeLinecap="round"
+      />
+      {/* handle */}
+      <line
+        x1="3"
+        y1="3"
+        x2="9"
+        y2="9"
+        stroke={color}
+        strokeWidth="2.5"
+        strokeLinecap="round"
+      />
+    </g>,
+    size,
+    color
+  )
+}
+
 // Default ring-glow dot for non-themed pages (returns null so the
 // existing white dot in Cursor.jsx is used instead)
 export const ICONS = {
@@ -167,6 +317,12 @@ export const ICONS = {
   comic: StarIcon,
   walls: WingsIcon,
   voyage: StrawHatIcon,
+  mystery: MagnifyIcon,
+  saiyan: EnergyIcon,
+  alchemy: TransmuteIcon,
+  shinigami: QuillIcon,
+  virtual: SwordsIcon,
+  ghoul: GhoulEyeIcon,
 }
 
 export function getIconByThemeId(id) {

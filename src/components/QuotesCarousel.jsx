@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import GlitchTranslation from './GlitchTranslation.jsx'
 
 const QUOTES = [
   {
@@ -71,11 +72,11 @@ export default function QuotesCarousel() {
 
       <div className="relative mx-auto max-w-6xl text-center">
         <div className="font-jp mb-2 text-sm tracking-wider text-sun">
-          名言 — words of power
+          名言 — <GlitchTranslation textKey="words of power" speed={30} />
         </div>
         <h2 className="mb-12 font-display text-5xl md:text-6xl">
-          <span className="text-white">ECHOES OF</span>{' '}
-          <span className="gradient-shonen animate-sweep">LEGENDS</span>
+          <span className="text-white"><GlitchTranslation textKey="ECHOES OF" speed={40} /></span>{' '}
+          <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="LEGENDS" speed={40} /></span>
         </h2>
 
         <div className="relative min-h-[260px]">

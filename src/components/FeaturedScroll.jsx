@@ -4,6 +4,9 @@ import { Link } from 'react-router-dom'
 import { ANIME } from '../data/anime.js'
 import { ContainerScroll } from './ContainerScroll.jsx'
 import { StarIcon, ArrowRightIcon } from './icons/ui.jsx'
+import GlitchTranslation from './GlitchTranslation.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t } from '../data/translations.js'
 
 /**
  * Wraps the Aceternity ContainerScroll component with our anime data.
@@ -12,6 +15,7 @@ import { StarIcon, ArrowRightIcon } from './icons/ui.jsx'
  */
 export default function FeaturedScroll() {
   const [i, setI] = useState(0)
+  const { lang } = useLanguage()
 
   useEffect(() => {
     const id = setInterval(() => setI((v) => (v + 1) % ANIME.length), 4500)
@@ -26,19 +30,18 @@ export default function FeaturedScroll() {
         titleComponent={
           <>
             <div className="font-jp mb-2 text-sm tracking-[0.4em] text-sun">
-              スクロールせよ — scroll on
+              スクロールせよ — <GlitchTranslation textKey="scroll on" speed={30} />
             </div>
             <h2 className="font-display text-4xl text-white md:text-5xl">
-              Step inside the
+              <GlitchTranslation textKey="Step inside the" speed={35} />
             </h2>
             <h2 className="mt-1 font-display text-5xl leading-none md:text-7xl lg:text-[6rem]">
               <span className="gradient-shonen animate-sweep">
-                ANIME REALM
+                <GlitchTranslation textKey="ANIME REALM" speed={40} />
               </span>
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm text-white/60 md:text-base">
-              Every legendary series, every iconic frame — animated into a
-              single cinematic showcase.
+              <GlitchTranslation textKey={lang === 'jp' ? 'featuredscroll_desc' : 'featuredscroll_desc_en'} speed={15} />
             </p>
           </>
         }
@@ -113,7 +116,7 @@ export default function FeaturedScroll() {
                   {a.jp} — {a.romaji || a.title}
                 </div>
                 <h3 className="font-display text-4xl leading-none text-white md:text-7xl">
-                  {a.title.toUpperCase()}
+                  <GlitchTranslation textKey={a.title} speed={45} />
                 </h3>
                 <p className="mt-2 max-w-md text-sm text-white/80 md:text-base">
                   {a.tag}
@@ -146,7 +149,7 @@ export default function FeaturedScroll() {
                       boxShadow: `0 0 24px ${a.accent}`,
                     }}
                   >
-                    ENTER
+                    <GlitchTranslation textKey="ENTER" speed={35} />
                     <ArrowRightIcon
                       size={14}
                       className="transition-transform duration-200 group-hover:translate-x-1"

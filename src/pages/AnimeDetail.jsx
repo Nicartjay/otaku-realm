@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { ANIME, getAnime } from '../data/anime.js'
 import { getMal } from '../data/animeMal.js'
-import GlitchText from '../components/GlitchText.jsx'
+import GlitchTranslation from '../components/GlitchTranslation.jsx'
 import ThemeMotif from '../components/ThemeMotif.jsx'
 import MagneticButton from '../components/MagneticButton.jsx'
 import {
@@ -16,6 +16,8 @@ import {
   buildCursorThemeFromAnime,
   useCursorTheme,
 } from '../context/CursorThemeContext.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t as tr } from '../data/translations.js'
 import useTheme from '../hooks/useTheme.js'
 
 /**
@@ -39,6 +41,7 @@ export default function AnimeDetail() {
   const [activeImg, setActiveImg] = useState(0)
   const { setTheme, resetTheme } = useCursorTheme()
   const themeMode = useTheme()
+  const { lang } = useLanguage()
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -154,7 +157,7 @@ export default function AnimeDetail() {
             className="rounded-full border border-white/20 bg-ink/60 px-4 py-2 font-display text-sm tracking-wider text-white backdrop-blur hover:border-sun hover:text-sun"
           >
             <ArrowLeftIcon size={14} />
-            BACK
+            <GlitchTranslation textKey="BACK" speed={35} />
           </MagneticButton>
         </motion.div>
 
@@ -196,7 +199,7 @@ export default function AnimeDetail() {
               className="font-display text-6xl leading-none md:text-8xl"
             >
               <span className="text-white">
-                <GlitchText text={anime.title.toUpperCase()} />
+                <GlitchTranslation textKey={anime.title} speed={50} className="inline" />
               </span>
             </motion.h1>
 
@@ -266,7 +269,7 @@ export default function AnimeDetail() {
               className="font-jp mb-2 text-sm tracking-wider"
               style={{ color: anime.accent }}
             >
-              あらすじ — synopsis
+              あらすじ — <GlitchTranslation textKey="synopsis" speed={30} />
             </div>
             <h2 className="mb-6 font-display text-4xl">
               <span
@@ -279,7 +282,7 @@ export default function AnimeDetail() {
                 }}
                 className="animate-sweep"
               >
-                THE STORY
+                <GlitchTranslation textKey="THE STORY" speed={40} />
               </span>
             </h2>
             <p
@@ -291,7 +294,7 @@ export default function AnimeDetail() {
 
             <div className="mt-8">
               <div className="mb-3 text-xs uppercase tracking-[0.4em] text-white/50">
-                Genres
+                <GlitchTranslation textKey="Genres" speed={30} />
               </div>
               <div className="flex flex-wrap gap-2">
                 {anime.genres.map((g) => (
@@ -359,17 +362,17 @@ export default function AnimeDetail() {
             </span>
 
             <div className="font-jp mb-2 text-sm" style={{ color: anime.accent }}>
-              情報 — info
+              情報 — <GlitchTranslation textKey="info" speed={30} />
             </div>
-            <h3 className="mb-6 font-display text-2xl">QUICK STATS</h3>
+            <h3 className="mb-6 font-display text-2xl"><GlitchTranslation textKey="QUICK STATS" speed={35} /></h3>
 
             <ul className="space-y-4">
               {[
-                ['Released', anime.year],
-                ['Studio', anime.studio],
-                ['Episodes', anime.episodes],
+                [tr('Released', lang), anime.year],
+                [tr('Studio', lang), anime.studio],
+                [tr('Episodes', lang), anime.episodes],
                 [
-                  'Rating',
+                  tr('Rating', lang),
                   <span key="rating" className="inline-flex items-center gap-1">
                     <StarIcon size={14} /> {anime.rating} / 10
                   </span>,
@@ -410,10 +413,10 @@ export default function AnimeDetail() {
                 className="font-jp mb-2 text-sm tracking-wider"
                 style={{ color: anime.accent }}
               >
-                情報 — information
+                情報 — <GlitchTranslation textKey="information" speed={30} />
               </div>
               <h2 className="font-display text-4xl">
-                <span className="text-white">SERIES</span>{' '}
+                <span className="text-white"><GlitchTranslation textKey="SERIES" speed={40} /></span>{' '}
                 <span
                   style={{
                     background: t.grad,
@@ -424,32 +427,32 @@ export default function AnimeDetail() {
                   }}
                   className="animate-sweep"
                 >
-                  DETAILS
+                  <GlitchTranslation textKey="DETAILS" speed={40} />
                 </span>
               </h2>
             </motion.div>
 
             <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
               {[
-                ['Type', mal.info.type],
-                ['Episodes', mal.info.episodes ?? 'Ongoing'],
-                ['Status', mal.info.status],
-                ['Aired', mal.info.aired],
-                ['Season', mal.info.season],
-                ['Duration', mal.info.duration],
-                ['Rating', mal.info.rating],
-                ['Source', mal.info.source],
+                [tr('Type', lang), mal.info.type],
+                [tr('Episodes', lang), mal.info.episodes ?? 'Ongoing'],
+                [tr('Status', lang), mal.info.status],
+                [tr('Aired', lang), mal.info.aired],
+                [tr('Season', lang), mal.info.season],
+                [tr('Duration', lang), mal.info.duration],
+                [tr('Rating', lang), mal.info.rating],
+                [tr('Source', lang), mal.info.source],
                 [
-                  'MAL Score',
+                  tr('MAL Score', lang),
                   <span key="malscore" className="inline-flex items-center gap-1">
                     <StarIcon size={14} /> {mal.info.score}
                   </span>,
                 ],
-                ['Scored By', mal.info.scoredBy?.toLocaleString()],
-                ['Rank', `#${mal.info.rank}`],
-                ['Popularity', `#${mal.info.popularity}`],
-                ['Members', mal.info.members?.toLocaleString()],
-                ['Favorites', mal.info.favorites?.toLocaleString()],
+                [tr('Scored By', lang), mal.info.scoredBy?.toLocaleString()],
+                [tr('Rank', lang), `#${mal.info.rank}`],
+                [tr('Popularity', lang), `#${mal.info.popularity}`],
+                [tr('Members', lang), mal.info.members?.toLocaleString()],
+                [tr('Favorites', lang), mal.info.favorites?.toLocaleString()],
               ].map(([k, v], i) => (
                 <motion.div
                   key={k}
@@ -478,9 +481,9 @@ export default function AnimeDetail() {
             {/* Production credits */}
             <div className="mt-10 grid gap-6 md:grid-cols-3">
               {[
-                ['Studios', mal.info.studios],
-                ['Producers', mal.info.producers],
-                ['Licensors', mal.info.licensors],
+                [tr('Studios', lang), mal.info.studios],
+                [tr('Producers', lang), mal.info.producers],
+                [tr('Licensors', lang), mal.info.licensors],
               ].map(([label, list], i) => (
                 <motion.div
                   key={label}
@@ -520,7 +523,7 @@ export default function AnimeDetail() {
                 {mal.info.themes?.length > 0 && (
                   <div>
                     <div className="font-jp mb-3 text-xs tracking-wider text-white/50">
-                      Themes
+                      <GlitchTranslation textKey="Themes" speed={30} />
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {mal.info.themes.map((th) => (
@@ -541,7 +544,7 @@ export default function AnimeDetail() {
                 {mal.info.demographics?.length > 0 && (
                   <div>
                     <div className="font-jp mb-3 text-xs tracking-wider text-white/50">
-                      Demographics
+                      <GlitchTranslation textKey="Demographics" speed={30} />
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {mal.info.demographics.map((d) => (
@@ -580,10 +583,10 @@ export default function AnimeDetail() {
                 className="font-jp mb-2 text-sm tracking-wider"
                 style={{ color: anime.accent }}
               >
-                登場人物 — characters
+                登場人物 — <GlitchTranslation textKey="characters" speed={30} />
               </div>
               <h2 className="font-display text-4xl">
-                <span className="text-white">CAST &</span>{' '}
+                <span className="text-white"><GlitchTranslation textKey="CAST &" speed={40} /></span>{' '}
                 <span
                   style={{
                     background: t.grad,
@@ -594,7 +597,7 @@ export default function AnimeDetail() {
                   }}
                   className="animate-sweep"
                 >
-                  VOICES
+                  <GlitchTranslation textKey="VOICES" speed={40} />
                 </span>
               </h2>
             </motion.div>
@@ -694,10 +697,10 @@ export default function AnimeDetail() {
                 className="font-jp mb-2 text-sm tracking-wider"
                 style={{ color: anime.accent }}
               >
-                主題歌 — soundtrack
+                主題歌 — <GlitchTranslation textKey="soundtrack" speed={30} />
               </div>
               <h2 className="font-display text-4xl">
-                <span className="text-white">OPENINGS &</span>{' '}
+                <span className="text-white"><GlitchTranslation textKey="OPENINGS &" speed={40} /></span>{' '}
                 <span
                   style={{
                     background: t.grad,
@@ -708,15 +711,15 @@ export default function AnimeDetail() {
                   }}
                   className="animate-sweep"
                 >
-                  ENDINGS
+                  <GlitchTranslation textKey="ENDINGS" speed={40} />
                 </span>
               </h2>
             </motion.div>
 
             <div className="grid gap-8 md:grid-cols-2">
               {[
-                ['OP', 'Openings', mal.openings],
-                ['ED', 'Endings', mal.endings],
+                ['OP', tr('Openings', lang), mal.openings],
+                ['ED', tr('Endings', lang), mal.endings],
               ].map(([code, label, list]) => (
                 <div key={code}>
                   <div
@@ -777,7 +780,7 @@ export default function AnimeDetail() {
                 className="font-jp mb-2 text-sm tracking-wider"
                 style={{ color: anime.accent }}
               >
-                豆知識 — production note
+                豆知識 — <GlitchTranslation textKey="production note" speed={30} />
               </div>
               <p className="text-sm leading-relaxed text-white/70 md:text-base">
                 {mal.background}
@@ -791,7 +794,7 @@ export default function AnimeDetail() {
                   className="focus-ring group mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] transition-colors"
                   style={{ color: anime.accent }}
                 >
-                  view on myanimelist
+                  <GlitchTranslation textKey="view on myanimelist" speed={25} />
                   <ArrowUpRightIcon
                     size={14}
                     className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
@@ -817,10 +820,10 @@ export default function AnimeDetail() {
               className="font-jp mb-2 text-sm tracking-wider"
               style={{ color: anime.accent }}
             >
-              ギャラリー — atmosphere
+              ギャラリー — <GlitchTranslation textKey="atmosphere" speed={30} />
             </div>
             <h2 className="font-display text-4xl">
-              <span className="text-white">VISUAL</span>{' '}
+              <span className="text-white"><GlitchTranslation textKey="VISUAL" speed={40} /></span>{' '}
               <span
                 style={{
                   background: t.grad,
@@ -831,7 +834,7 @@ export default function AnimeDetail() {
                 }}
                 className="animate-sweep"
               >
-                MOMENTS
+                <GlitchTranslation textKey="MOMENTS" speed={40} />
               </span>
             </h2>
           </motion.div>
@@ -901,11 +904,11 @@ export default function AnimeDetail() {
             className="mb-10"
           >
             <div className="font-jp mb-2 text-sm tracking-wider text-sun">
-              もっと見る — more
+              もっと見る — <GlitchTranslation textKey="more" speed={30} />
             </div>
             <h2 className="font-display text-4xl">
-              <span className="text-white">OTHER</span>{' '}
-              <span className="gradient-shonen animate-sweep">EPICS</span>
+              <span className="text-white"><GlitchTranslation textKey="OTHER" speed={40} /></span>{' '}
+              <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="EPICS" speed={40} /></span>
             </h2>
           </motion.div>
 
@@ -933,13 +936,13 @@ export default function AnimeDetail() {
                   <div className="absolute inset-x-0 bottom-0 p-4">
                     <div className="font-jp text-xs text-white/70">{a.jp}</div>
                     <div className="font-display text-2xl text-white">
-                      {a.title}
+                      <GlitchTranslation textKey={a.title} speed={35} />
                     </div>
                     <div
                       className="mt-1 inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em]"
                       style={{ color: a.accent }}
                     >
-                      explore
+                      <GlitchTranslation textKey="explore" speed={30} />
                       <ArrowRightIcon
                         size={12}
                         className="transition-transform duration-200 group-hover:translate-x-1"

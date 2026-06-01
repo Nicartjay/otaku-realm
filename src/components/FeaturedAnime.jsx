@@ -3,6 +3,7 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { ANIME } from '../data/anime.js'
 import { StarIcon, ArrowRightIcon } from './icons/ui.jsx'
+import GlitchTranslation from './GlitchTranslation.jsx'
 
 function Card({ a, i }) {
   const ref = useRef(null)
@@ -105,7 +106,7 @@ function Card({ a, i }) {
               {a.jp}
             </div>
             <h3 className="font-display text-3xl text-white drop-shadow">
-              {a.title}
+              <GlitchTranslation textKey={a.title} speed={35} />
             </h3>
             <p className="mt-1 text-sm text-white/70">{a.tag}</p>
 
@@ -124,7 +125,7 @@ function Card({ a, i }) {
                 className="flex items-center gap-1"
                 style={{ color: a.accent }}
               >
-                explore
+                <GlitchTranslation textKey="explore" speed={30} />
                 <ArrowRightIcon
                   size={14}
                   className="transition-transform duration-200 group-hover:translate-x-1"
@@ -157,15 +158,15 @@ export default function FeaturedAnime() {
         >
           <div>
             <div className="font-jp mb-2 text-sm tracking-wider text-sun">
-              注目のアニメ — featured
+              注目のアニメ — <GlitchTranslation textKey="featured" speed={30} />
             </div>
             <h2 className="font-display text-5xl md:text-6xl">
-              <span className="gradient-shonen animate-sweep">LEGENDARY</span>{' '}
-              <span className="text-white">SERIES</span>
+              <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="LEGENDARY" speed={40} /></span>{' '}
+              <span className="text-white"><GlitchTranslation textKey="SERIES" speed={40} /></span>
             </h2>
           </div>
           <div className="hidden text-xs uppercase tracking-[0.4em] text-white/50 md:block">
-            // hover & click to enter
+            <GlitchTranslation textKey="hover & click to enter" speed={25} />
           </div>
         </motion.div>
 
