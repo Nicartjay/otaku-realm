@@ -13,11 +13,11 @@ import { useLanguage } from '../context/LanguageContext.jsx'
 import GridShader from './GridShader.jsx'
 
 const SOCIALS = [
-  { label: 'Twitter', href: '#', icon: <TwitterXIcon size={24} /> },
-  { label: 'Instagram', href: '#', icon: <InstagramIcon size={24} /> },
-  { label: 'YouTube', href: '#', icon: <YoutubeIcon size={24} /> },
-  { label: 'Discord', href: '#', icon: <DiscordIcon size={24} /> },
-  { label: 'GitHub', href: '#', icon: <GithubIcon size={24} /> },
+  { label: 'Twitter', href: 'https://x.com', icon: <TwitterXIcon size={24} /> },
+  { label: 'Instagram', href: 'https://instagram.com', icon: <InstagramIcon size={24} /> },
+  { label: 'YouTube', href: 'https://youtube.com', icon: <YoutubeIcon size={24} /> },
+  { label: 'Discord', href: 'https://discord.com', icon: <DiscordIcon size={24} /> },
+  { label: 'GitHub', href: 'https://github.com', icon: <GithubIcon size={24} /> },
 ]
 
 export default function Footer() {

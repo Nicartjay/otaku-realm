@@ -25,6 +25,7 @@ export const translations = {
   'Home': 'ホーム',
   'Anime': 'アニメ',
   'Heroes': 'ヒーロー',
+  'Game': 'ゲーム',
   'Saga': '物語',
   'Quotes': '名言',
 
@@ -167,6 +168,11 @@ export const translations = {
   'more': 'もっと見る',
   'OTHER': 'その他の',
   'EPICS': '叙事詩',
+
+  // Game section
+  'ゲーム — challenge': 'ゲーム — challenge',
+  'PUZZLE ARENA': 'パズルアリーナ',
+  'solve the cube': 'キューブを解け',
 }
 
 /**

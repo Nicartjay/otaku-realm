@@ -13,7 +13,7 @@ const TEXTS = ['POWER', 'ANIME', 'REALM', 'OTAKU', 'HYPER', 'LEGEND']
  * Cards fly through Z-space driven by scroll. Uses native rAF + scroll proxy,
  * no external lib (Lenis). Respects reduced motion. Uses anime data for cards.
  */
-export default function HyperScroll() {
+export default function HyperScroll({ autoScroll = false }) {
   const reduce = usePrefersReducedMotion()
   const { lang } = useLanguage()
   const containerRef = useRef(null)
@@ -22,6 +22,7 @@ export default function HyperScroll() {
   const rafRef = useRef(null)
   const stateRef = useRef({ scroll: 0, velocity: 0, targetVelocity: 0, mouseX: 0, mouseY: 0 })
   const itemsRef = useRef([])
+  const autoScrolledRef = useRef(false)
   const [fps, setFps] = useState(60)
   const [vel, setVel] = useState(0)
 
@@ -127,11 +128,9 @@ export default function HyperScroll() {
     itemsRef.current = items
 
     // Scroll handling via wheel
-    let scrollAccum = 0
     const handleWheel = (e) => {
       // Only capture when in the hyper section
-      scrollAccum += e.deltaY
-      stateRef.current.scroll = scrollAccum
+      stateRef.current.scroll += e.deltaY
       stateRef.current.targetVelocity = e.deltaY * 0.05
     }
 
@@ -232,6 +231,35 @@ export default function HyperScroll() {
       window.removeEventListener('mousemove', handleMouse)
     }
   }, [reduce, buildScene, CONFIG])
+
+  // Auto-scroll effect — runs once when autoScroll flips to true
+  // Starts during the loading fade-out to build momentum, then decelerates over 3s
+  useEffect(() => {
+    if (!autoScroll || reduce || autoScrolledRef.current) return
+    autoScrolledRef.current = true
+
+    const duration = 10000 // 10 seconds total
+    const totalScroll = 3500 // total pixels to inject (more travel for longer duration)
+    const start = performance.now()
+    let lastScroll = 0
+
+    const tick = () => {
+      const elapsed = performance.now() - start
+      const t = Math.min(1, elapsed / duration)
+      // Exponential ease-out — fast initial momentum, slowly decelerating
+      const eased = 1 - Math.pow(1 - t, 4)
+      const scrollNow = eased * totalScroll
+      const delta = scrollNow - lastScroll
+      lastScroll = scrollNow
+
+      stateRef.current.scroll += delta
+      // Velocity proportional to delta for visual feedback (stretchy stars, perspective warp)
+      stateRef.current.targetVelocity = delta * 0.12
+
+      if (t < 1) requestAnimationFrame(tick)
+    }
+    requestAnimationFrame(tick)
+  }, [autoScroll, reduce])
 
   // Reduced motion fallback: simple static grid
   if (reduce) {

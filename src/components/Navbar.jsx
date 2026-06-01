@@ -9,6 +9,7 @@ const NAV = [
   ['Home', 'hero'],
   ['Anime', 'anime'],
   ['Heroes', 'characters'],
+  ['Game', 'game'],
   ['Saga', 'about'],
   ['Quotes', 'quotes'],
 ]
