@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Theme tokens. Dark mode is the default (no class on <html>). Adding
+ * `class="dark"` to <html> is a no-op (kept for parity with shadcn-style
+ * toggles). Adding `class="light"` flips ink/paper to a cream surface.
+ *
+ * Tailwind colors `bg-ink`, `text-ink`, `border-ink`, `bg-paper`, etc.
+ * resolve through these CSS variables. Anime accent colors (flame/sun/
+ * chakra/...) stay constant in both modes by design — only the neutral
+ * scaffolding flips.
+ */
+:root {
+  --ink: 8 2 15;          /* #08020f */
+  --inkSoft: 18 8 36;     /* #120824 */
+  --paper: 245 245 245;   /* near-white text on dark surface */
+  --paperSoft: 230 230 230;
+  --surface: #08020f;
+  --surface-text: #f5f5f5;
+  --surface-soft: #120824;
+  --scrollbar-track: #08020f;
+}
+
+html.light {
+  --ink: 250 245 235;     /* warm cream */
+  --inkSoft: 235 228 215;
+  --paper: 24 18 8;       /* near-black text */
+  --paperSoft: 60 50 35;
+  --surface: #fbf6ec;
+  --surface-text: #181208;
+  --surface-soft: #ebe4d7;
+  --scrollbar-track: #ebe4d7;
+}
+
+* {
+  cursor: none !important;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  background: var(--surface);
+  color: var(--surface-text);
+  font-family: 'Poppins', system-ui, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: #ff2d55;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #ff2d55, #ffc93c);
+  border-radius: 8px;
+}
+
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke: 2px var(--surface);
+  }
+  .text-stroke-white {
+    -webkit-text-stroke: 2px var(--surface-text);
+  }
+  .gradient-shonen {
+    /* "Sunfire" — gold → orange → red. Replaces the previous five-color
+       rainbow with a tighter heat-themed sweep. Still animates via the
+       existing `animate-sweep` keyframes; just three stops looped so the
+       sweep keeps a continuous gold→red→gold pulse. */
+    background: linear-gradient(
+      90deg,
+      #ffc93c,
+      #ff8a3c,
+      #ff2d55,
+      #ff8a3c,
+      #ffc93c
+    );
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .panel-border {
+    box-shadow: 0 0 0 2px var(--surface), 0 0 0 5px #ff2d55,
+      0 20px 50px rgba(255, 45, 85, 0.25);
+  }
+  .halftone {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1.5px);
+    background-size: 12px 12px;
+  }
+  .speed-lines {
+    background: repeating-linear-gradient(
+      90deg,
+      transparent 0 8px,
+      rgba(255, 255, 255, 0.05) 8px 9px
+    );
+  }
+  .card-shine {
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.25) 50%,
+      transparent 70%
+    );
+    background-size: 250% 100%;
+  }
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Site-wide keyboard focus ring. The custom cursor hides the default
+     outline visually for mouse users; this brings back a visible indicator
+     for keyboard navigation only (focus-visible scope). */
+  .focus-ring {
+    @apply outline-none;
+  }
+  .focus-ring:focus-visible {
+    outline: 2px solid #ffc93c;
+    outline-offset: 3px;
+    border-radius: inherit;
+    box-shadow: 0 0 0 4px rgba(255, 45, 85, 0.35);
+  }
+}
+
+/*
+ * Light-mode legibility patches. Most of the codebase uses bare
+ * `text-white`, `bg-white/X`, `border-white/X` for the dark-mode design.
+ * Rather than edit every component, we re-route those classes in light
+ * mode so cards/text/borders flip to dark surfaces. This keeps every
+ * animation, gradient, and accent color exactly as designed.
+ */
+html.light .text-white\/60,
+html.light .text-white\/70,
+html.light .text-white\/80,
+html.light .text-white\/90,
+html.light .text-white {
+  color: rgb(24 18 8 / 0.85);
+}
+html.light .text-white\/50 {
+  color: rgb(24 18 8 / 0.6);
+}
+html.light .text-white\/40 {
+  color: rgb(24 18 8 / 0.5);
+}
+html.light .border-white\/10,
+html.light .border-white\/20 {
+  border-color: rgb(24 18 8 / 0.15);
+}
+html.light .bg-white\/5 {
+  background-color: rgb(24 18 8 / 0.05);
+}
+html.light .bg-white\/10 {
+  background-color: rgb(24 18 8 / 0.08);
+}
+
+/* Reduced-motion preference. Animations remain ON by default; this block
+   only fires when the user has explicitly requested reduced motion at the
+   OS level, in which case CSS keyframes are neutralized and component
+   logic gates additional Framer Motion transitions via
+   `usePrefersReducedMotion()`. Never reduces motion for default users. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
