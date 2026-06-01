@@ -27,7 +27,7 @@ export const ANIME = [
     genres: ['Action', 'Supernatural', 'Historical'],
     rating: 8.5,
     cover: 'https://cdn.myanimelist.net/images/anime/1286/99889l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1628/103229l.jpg',
+    banner: 'https://media.kitsu.app/anime/41370/cover_image/large-3de3cc6d2b33162c928de10aa201e4ba.jpeg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1628/103229l.jpg',
       'https://cdn.myanimelist.net/images/anime/1310/100840l.jpg',
@@ -67,7 +67,7 @@ export const ANIME = [
     genres: ['Action', 'Adventure', 'Martial Arts'],
     rating: 8.4,
     cover: 'https://cdn.myanimelist.net/images/anime/13/17405l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1565/111305l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/1555/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1565/111305l.jpg',
       'https://cdn.myanimelist.net/images/anime/9/59431l.jpg',
@@ -107,7 +107,7 @@ export const ANIME = [
     genres: ['Action', 'Supernatural', 'Dark Fantasy'],
     rating: 8.6,
     cover: 'https://cdn.myanimelist.net/images/anime/1171/109222l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1937/111424l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/42765/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1937/111424l.jpg',
       'https://cdn.myanimelist.net/images/anime/1909/104931l.jpg',
@@ -147,7 +147,7 @@ export const ANIME = [
     genres: ['Action', 'Superhero', 'School'],
     rating: 8.0,
     cover: 'https://cdn.myanimelist.net/images/anime/10/78745l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1136/114625l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/11469/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1136/114625l.jpg',
       'https://cdn.myanimelist.net/images/anime/1109/92566l.jpg',
@@ -187,7 +187,7 @@ export const ANIME = [
     genres: ['Action', 'Drama', 'Dark Fantasy'],
     rating: 9.0,
     cover: 'https://cdn.myanimelist.net/images/anime/10/47347l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1409/104606l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/7442/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1409/104606l.jpg',
       'https://cdn.myanimelist.net/images/anime/13/60591l.jpg',
@@ -227,7 +227,7 @@ export const ANIME = [
     genres: ['Adventure', 'Fantasy', 'Comedy'],
     rating: 8.7,
     cover: 'https://cdn.myanimelist.net/images/anime/6/73245l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1244/138851l.jpg',
+    banner: 'https://media.kitsu.app/anime/12/cover_image/large-3e72f400a87b5241780c5082f0582611.jpeg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1244/138851l.jpg',
       'https://cdn.myanimelist.net/images/anime/1386/100624l.jpg',
@@ -267,7 +267,7 @@ export const ANIME = [
     genres: ['Mystery', 'Adventure', 'Comedy'],
     rating: 8.2,
     cover: 'https://cdn.myanimelist.net/images/anime/7/75199l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1593/138525l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/210/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1593/138525l.jpg',
       'https://cdn.myanimelist.net/images/anime/7/75199l.jpg',
@@ -307,7 +307,7 @@ export const ANIME = [
     genres: ['Action', 'Adventure', 'Martial Arts'],
     rating: 8.8,
     cover: 'https://cdn.myanimelist.net/images/anime/1277/142022l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1402/110224l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/4394/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1402/110224l.jpg',
       'https://cdn.myanimelist.net/images/anime/1868/121646l.jpg',
@@ -347,7 +347,7 @@ export const ANIME = [
     genres: ['Action', 'Adventure', 'Drama', 'Fantasy'],
     rating: 9.1,
     cover: 'https://cdn.myanimelist.net/images/anime/1223/96541l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1208/94745l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/3936/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1208/94745l.jpg',
       'https://cdn.myanimelist.net/images/anime/1223/96541l.jpg',
@@ -387,7 +387,7 @@ export const ANIME = [
     genres: ['Supernatural', 'Suspense', 'Psychological'],
     rating: 8.6,
     cover: 'https://cdn.myanimelist.net/images/anime/9/9453l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1079/138100l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/1376/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1079/138100l.jpg',
       'https://cdn.myanimelist.net/images/anime/9/9453l.jpg',
@@ -427,7 +427,7 @@ export const ANIME = [
     genres: ['Action', 'Adventure', 'Fantasy', 'Romance'],
     rating: 7.5,
     cover: 'https://cdn.myanimelist.net/images/anime/11/39717l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/1141/93288l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/6589/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/1141/93288l.jpg',
       'https://cdn.myanimelist.net/images/anime/1256/128714l.jpg',
@@ -467,7 +467,7 @@ export const ANIME = [
     genres: ['Action', 'Supernatural', 'Horror', 'Psychological'],
     rating: 7.8,
     cover: 'https://cdn.myanimelist.net/images/anime/5/64449l.jpg',
-    banner: 'https://cdn.myanimelist.net/images/anime/12/76049l.jpg',
+    banner: 'https://media.kitsu.app/anime/cover_images/8271/large.jpg',
     bannerSlides: [
       'https://cdn.myanimelist.net/images/anime/12/76049l.jpg',
       'https://cdn.myanimelist.net/images/anime/5/64449l.jpg',
