@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom'
 import { ANIME } from '../data/anime.js'
 import { StarIcon, ArrowRightIcon } from './icons/ui.jsx'
 import GlitchTranslation from './GlitchTranslation.jsx'
+import ShatterText from './ShatterText.jsx'
 import AnimeCardEffects from './AnimeCardEffects.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t } from '../data/translations.js'
 
 function Card({ a, i }) {
   const ref = useRef(null)
   const [isHovered, setIsHovered] = useState(false)
+  const { lang } = useLanguage()
 
   const onMove = (e) => {
     const el = ref.current
@@ -111,7 +115,7 @@ function Card({ a, i }) {
             <div className="font-jp text-sm tracking-wider text-white/80">
               {a.jp}
             </div>
-            <h3 className="font-display text-3xl text-white drop-shadow">
+            <h3 className={`${lang === 'jp' ? 'font-pop' : 'font-display'} text-3xl text-white drop-shadow`}>
               <GlitchTranslation textKey={a.title} speed={35} />
             </h3>
             <p className="mt-1 text-sm text-white/70">{a.tag}</p>
@@ -156,6 +160,7 @@ function Card({ a, i }) {
 }
 
 export default function FeaturedAnime() {
+  const { lang } = useLanguage()
   return (
     <section id="anime" className="relative px-6 py-32">
       <div className="mx-auto max-w-6xl">
@@ -170,9 +175,9 @@ export default function FeaturedAnime() {
             <div className="font-jp mb-2 text-sm tracking-wider text-sun">
               注目のアニメ — <GlitchTranslation textKey="featured" speed={30} />
             </div>
-            <h2 className="font-display text-5xl md:text-6xl">
-              <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="LEGENDARY" speed={40} /></span>{' '}
-              <span className="text-white"><GlitchTranslation textKey="SERIES" speed={40} /></span>
+            <h2 className={`text-5xl md:text-6xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+              <ShatterText text={t('LEGENDARY', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" />{' '}
+              <ShatterText text={t('SERIES', lang)} className="text-white" charClassName="inline-block" delay={0.2} />
             </h2>
           </div>
           <div className="hidden text-xs uppercase tracking-[0.4em] text-white/50 md:block">

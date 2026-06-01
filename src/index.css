@@ -10,6 +10,19 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'KeinannPOPjp';
+  src: url('/fonts/KeinannPOPjp.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-pop,
+.font-pop * {
+  font-family: 'KeinannPOPjp', sans-serif !important;
+}
+
 /*
  * Theme tokens. Dark mode is the default (no class on <html>). Adding
  * `class="dark"` to <html> is a no-op (kept for parity with shadcn-style

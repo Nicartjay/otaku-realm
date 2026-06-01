@@ -28,8 +28,8 @@ export default function Footer() {
       {/* Shader background */}
       <div className="absolute inset-0 z-0">
         <GridShader />
-        {/* Dark overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/70" />
+        {/* Dark overlay for text legibility — lighter in light mode to let inverted shader through */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/20 to-black/30 dark:from-black/80 dark:via-black/50 dark:to-black/70" />
       </div>
 
       {/* Top accent line */}

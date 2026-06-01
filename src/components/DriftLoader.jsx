@@ -1,4 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react'
+import useTheme from '../hooks/useTheme.js'
 
 /**
  * DriftLoader — Canvas-based dot drift loading screen.
@@ -14,6 +15,9 @@ export default function DriftLoader({ onDone, onFillStart }) {
   const onFillStartRef = useRef(onFillStart)
   onDoneRef.current = onDone
   onFillStartRef.current = onFillStart
+  const theme = useTheme()
+  const themeRef = useRef(theme)
+  themeRef.current = theme
   const stateRef = useRef({
     dots: [],
     width: 0,
@@ -33,6 +37,7 @@ export default function DriftLoader({ onDone, onFillStart }) {
   const createDots = useCallback((width, height, count) => {
     const dots = []
     const now = performance.now()
+    const isLight = themeRef.current === 'light'
     for (let i = 0; i < count; i++) {
       // Spread initial x evenly across the full width to avoid left-clustering
       const initX = (i / count) * width + (Math.random() - 0.5) * (width / count)
@@ -41,12 +46,12 @@ export default function DriftLoader({ onDone, onFillStart }) {
         startTime: now,
         frequency: 0.075,
         amplitude: height * 0.5,
-        // ~25% gold/flame dots, rest dark
+        // ~25% gold/flame dots, rest neutral
         color: Math.random() < 0.25
           ? [255, 194, 60] // sun/gold
           : Math.random() < 0.3
             ? [255, 45, 85] // flame
-            : [30, 30, 30],
+            : isLight ? [200, 190, 175] : [30, 30, 30],
         size: 1,
         maxSize: Math.random() * 28 + 4,
         speed: 0,
@@ -138,8 +143,9 @@ export default function DriftLoader({ onDone, onFillStart }) {
           return
         }
         // Keep drawing the filled state while fading
+        const bgFade = themeRef.current === 'light' ? '#f5f0eb' : '#111'
         ctx.clearRect(0, 0, s.width, s.height)
-        ctx.fillStyle = '#111'
+        ctx.fillStyle = bgFade
         ctx.fillRect(0, 0, s.width, s.height)
         rafRef.current = requestAnimationFrame(draw)
         return
@@ -147,8 +153,9 @@ export default function DriftLoader({ onDone, onFillStart }) {
 
       ctx.clearRect(0, 0, s.width, s.height)
 
-      // Background — dark
-      ctx.fillStyle = '#111'
+      // Background — theme-aware
+      const bgColor = themeRef.current === 'light' ? '#f5f0eb' : '#111'
+      ctx.fillStyle = bgColor
       ctx.fillRect(0, 0, s.width, s.height)
 
       // Fill phase: dots grow to fill screen
@@ -211,17 +218,22 @@ export default function DriftLoader({ onDone, onFillStart }) {
       // Center text — "起動中" + progress
       if (s.phase === 'drift') {
         const textOpacity = Math.min(1, elapsed / 800)
+        const isLight = themeRef.current === 'light'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
 
         // Japanese text
         ctx.font = '14px "x8y12pxDenkiChip", sans-serif'
-        ctx.fillStyle = `rgba(255, 194, 60, ${textOpacity * 0.9})`
+        ctx.fillStyle = isLight
+          ? `rgba(200, 120, 0, ${textOpacity * 0.9})`
+          : `rgba(255, 194, 60, ${textOpacity * 0.9})`
         ctx.fillText('起動中', s.width / 2, s.height / 2 - 28)
 
         // Percentage
         ctx.font = '12px "JetBrains Mono", monospace'
-        ctx.fillStyle = `rgba(255, 255, 255, ${textOpacity * 0.6})`
+        ctx.fillStyle = isLight
+          ? `rgba(60, 50, 40, ${textOpacity * 0.6})`
+          : `rgba(255, 255, 255, ${textOpacity * 0.6})`
         const pct = Math.floor(s.progress * 100).toString().padStart(3, '0')
         ctx.fillText(`${pct}%`, s.width / 2, s.height / 2 + 28)
 
@@ -265,7 +277,7 @@ export default function DriftLoader({ onDone, onFillStart }) {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 z-[10001]"
-      style={{ background: '#111' }}
+      style={{ background: theme === 'light' ? '#f5f0eb' : '#111' }}
     />
   )
 }

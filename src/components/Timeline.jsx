@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import GlitchTranslation from './GlitchTranslation.jsx'
+import ShatterText from './ShatterText.jsx'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { t as tr } from '../data/translations.js'
 
@@ -58,9 +59,9 @@ export default function Timeline() {
           <div className="font-jp mb-2 text-sm tracking-wider text-sakura">
             歴史 — <GlitchTranslation textKey="history" speed={30} />
           </div>
-          <h2 className="font-display text-5xl md:text-6xl">
-            <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="SAGA" speed={40} /></span>{' '}
-            <span className="text-white"><GlitchTranslation textKey="OF THE MEDIUM" speed={35} /></span>
+          <h2 className={`text-5xl md:text-6xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+            <ShatterText text={tr('SAGA', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" />{' '}
+            <ShatterText text={tr('OF THE MEDIUM', lang)} className="text-white" charClassName="inline-block" delay={0.1} />
           </h2>
         </motion.div>
 

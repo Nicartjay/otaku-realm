@@ -1,5 +1,6 @@
 import { useRef, useEffect } from 'react'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion.js'
+import useTheme from '../hooks/useTheme.js'
 
 const VERTEX_SRC = `#version 300 es
 precision highp float;
@@ -17,6 +18,7 @@ uniform float time;
 uniform vec2 resolution;
 uniform vec2 move;
 uniform vec2 wheel;
+uniform float invert;
 #define FC gl_FragCoord.xy
 #define R resolution
 #define T (time+113.+.2*wheel.y/MN)
@@ -165,6 +167,8 @@ vec3 render(vec2 uv) {
   float vig=c.x*c.y*25.;
   vig=pow(vig,.25);
   col*=vig;
+  vec3 lightCol = mix(vec3(1.0, 0.6, 0.2), vec3(1.0), col);
+  col=mix(col,lightCol,invert);
   return col;
 }`
 
@@ -177,6 +181,9 @@ export default function GridShader({ className = '' }) {
   const canvasRef = useRef(null)
   const rafRef = useRef(null)
   const reduce = usePrefersReducedMotion()
+  const theme = useTheme()
+  const themeRef = useRef(theme)
+  themeRef.current = theme
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -233,6 +240,7 @@ export default function GridShader({ className = '' }) {
     const uTime = gl.getUniformLocation(program, 'time')
     const uMove = gl.getUniformLocation(program, 'move')
     const uWheel = gl.getUniformLocation(program, 'wheel')
+    const uInvert = gl.getUniformLocation(program, 'invert')
 
     let mouseMove = [0, 0]
     let wheelOffset = [0, 0]
@@ -258,6 +266,7 @@ export default function GridShader({ className = '' }) {
       gl.uniform1f(uTime, (now - startTime) * 1e-3)
       gl.uniform2f(uMove, mouseMove[0] * dpr, mouseMove[1] * dpr)
       gl.uniform2f(uWheel, wheelOffset[0], wheelOffset[1])
+      gl.uniform1f(uInvert, themeRef.current === 'light' ? 1.0 : 0.0)
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
     }
 

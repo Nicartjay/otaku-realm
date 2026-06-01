@@ -1,6 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import GlitchTranslation from './GlitchTranslation.jsx'
+import ShatterText from './ShatterText.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t } from '../data/translations.js'
 
 const QUOTES = [
   {
@@ -37,6 +40,7 @@ const QUOTES = [
 
 export default function QuotesCarousel() {
   const [i, setI] = useState(0)
+  const { lang } = useLanguage()
 
   useEffect(() => {
     const t = setInterval(() => setI((v) => (v + 1) % QUOTES.length), 5000)
@@ -74,9 +78,9 @@ export default function QuotesCarousel() {
         <div className="font-jp mb-2 text-sm tracking-wider text-sun">
           名言 — <GlitchTranslation textKey="words of power" speed={30} />
         </div>
-        <h2 className="mb-12 font-display text-5xl md:text-6xl">
-          <span className="text-white"><GlitchTranslation textKey="ECHOES OF" speed={40} /></span>{' '}
-          <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="LEGENDS" speed={40} /></span>
+        <h2 className={`mb-12 text-5xl md:text-6xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+          <ShatterText text={t('ECHOES OF', lang)} className="text-white" charClassName="inline-block" />{' '}
+          <ShatterText text={t('LEGENDS', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" delay={0.15} />
         </h2>
 
         <div className="relative min-h-[260px]">

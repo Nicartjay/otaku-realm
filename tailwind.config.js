@@ -29,6 +29,7 @@ export default {
         display: ['"Bangers"', 'system-ui', 'sans-serif'],
         body: ['"Poppins"', 'system-ui', 'sans-serif'],
         jp: ['"x8y12pxDenkiChip"', 'sans-serif'],
+        pop: ['"KeinannPOPjp"', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       keyframes: {

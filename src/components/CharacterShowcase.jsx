@@ -2,6 +2,9 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { CornerDownRightIcon } from './icons/ui.jsx'
 import GlitchTranslation from './GlitchTranslation.jsx'
+import ShatterText from './ShatterText.jsx'
+import { useLanguage } from '../context/LanguageContext.jsx'
+import { t } from '../data/translations.js'
 
 /**
  * Real character photos sourced from MyAnimeList CDN
@@ -112,6 +115,7 @@ const CHARS = [
 
 export default function CharacterShowcase() {
   const [active, setActive] = useState(0)
+  const { lang } = useLanguage()
   const ch = CHARS[active]
 
   return (
@@ -134,9 +138,9 @@ export default function CharacterShowcase() {
           <div className="font-jp mb-2 text-sm tracking-wider text-chakra">
             キャラクター — <GlitchTranslation textKey="heroes" speed={30} />
           </div>
-          <h2 className="font-display text-5xl md:text-6xl">
-            <span className="text-white"><GlitchTranslation textKey="ICONIC" speed={40} /></span>{' '}
-            <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="CHARACTERS" speed={40} /></span>
+          <h2 className={`text-5xl md:text-6xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+            <ShatterText text={t('ICONIC', lang)} className="text-white" charClassName="inline-block" />{' '}
+            <ShatterText text={t('CHARACTERS', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" delay={0.15} />
           </h2>
         </motion.div>
 

@@ -4,6 +4,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom'
 import { ANIME, getAnime } from '../data/anime.js'
 import { getMal } from '../data/animeMal.js'
 import GlitchTranslation from '../components/GlitchTranslation.jsx'
+import ShatterText from '../components/ShatterText.jsx'
 import ThemeMotif from '../components/ThemeMotif.jsx'
 import MagneticButton from '../components/MagneticButton.jsx'
 import {
@@ -196,7 +197,7 @@ export default function AnimeDetail() {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8 }}
-              className="font-display text-6xl leading-none md:text-8xl"
+              className={`text-6xl leading-none md:text-8xl ${lang === 'jp' ? 'font-pop font-bold' : 'font-display'}`}
             >
               <span className="text-white">
                 <GlitchTranslation textKey={anime.title} speed={50} className="inline" />
@@ -271,19 +272,18 @@ export default function AnimeDetail() {
             >
               あらすじ — <GlitchTranslation textKey="synopsis" speed={30} />
             </div>
-            <h2 className="mb-6 font-display text-4xl">
-              <span
-                style={{
+            <h2 className={`mb-6 text-4xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+              <ShatterText
+                text={tr('THE STORY', lang)}
+                charClassName="inline-block animate-sweep"
+                charStyle={{
                   background: t.grad,
                   backgroundSize: '300% 300%',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
                   color: 'transparent',
                 }}
-                className="animate-sweep"
-              >
-                <GlitchTranslation textKey="THE STORY" speed={40} />
-              </span>
+              />
             </h2>
             <p
               data-cursor="text"
@@ -415,20 +415,20 @@ export default function AnimeDetail() {
               >
                 情報 — <GlitchTranslation textKey="information" speed={30} />
               </div>
-              <h2 className="font-display text-4xl">
-                <span className="text-white"><GlitchTranslation textKey="SERIES" speed={40} /></span>{' '}
-                <span
-                  style={{
+              <h2 className={`text-4xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+                <ShatterText text={tr('SERIES', lang)} className="text-white" charClassName="inline-block" />{' '}
+                <ShatterText
+                  text={tr('DETAILS', lang)}
+                  charClassName="inline-block animate-sweep"
+                  charStyle={{
                     background: t.grad,
                     backgroundSize: '300% 300%',
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
                     color: 'transparent',
                   }}
-                  className="animate-sweep"
-                >
-                  <GlitchTranslation textKey="DETAILS" speed={40} />
-                </span>
+                  delay={0.15}
+                />
               </h2>
             </motion.div>
 
@@ -585,20 +585,20 @@ export default function AnimeDetail() {
               >
                 登場人物 — <GlitchTranslation textKey="characters" speed={30} />
               </div>
-              <h2 className="font-display text-4xl">
-                <span className="text-white"><GlitchTranslation textKey="CAST &" speed={40} /></span>{' '}
-                <span
-                  style={{
+              <h2 className={`text-4xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+                <ShatterText text={tr('CAST &', lang)} className="text-white" charClassName="inline-block" />{' '}
+                <ShatterText
+                  text={tr('VOICES', lang)}
+                  charClassName="inline-block animate-sweep"
+                  charStyle={{
                     background: t.grad,
                     backgroundSize: '300% 300%',
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
                     color: 'transparent',
                   }}
-                  className="animate-sweep"
-                >
-                  <GlitchTranslation textKey="VOICES" speed={40} />
-                </span>
+                  delay={0.15}
+                />
               </h2>
             </motion.div>
 
@@ -699,20 +699,20 @@ export default function AnimeDetail() {
               >
                 主題歌 — <GlitchTranslation textKey="soundtrack" speed={30} />
               </div>
-              <h2 className="font-display text-4xl">
-                <span className="text-white"><GlitchTranslation textKey="OPENINGS &" speed={40} /></span>{' '}
-                <span
-                  style={{
+              <h2 className={`text-4xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+                <ShatterText text={tr('OPENINGS &', lang)} className="text-white" charClassName="inline-block" />{' '}
+                <ShatterText
+                  text={tr('ENDINGS', lang)}
+                  charClassName="inline-block animate-sweep"
+                  charStyle={{
                     background: t.grad,
                     backgroundSize: '300% 300%',
                     WebkitBackgroundClip: 'text',
                     backgroundClip: 'text',
                     color: 'transparent',
                   }}
-                  className="animate-sweep"
-                >
-                  <GlitchTranslation textKey="ENDINGS" speed={40} />
-                </span>
+                  delay={0.2}
+                />
               </h2>
             </motion.div>
 
@@ -822,20 +822,20 @@ export default function AnimeDetail() {
             >
               ギャラリー — <GlitchTranslation textKey="atmosphere" speed={30} />
             </div>
-            <h2 className="font-display text-4xl">
-              <span className="text-white"><GlitchTranslation textKey="VISUAL" speed={40} /></span>{' '}
-              <span
-                style={{
+            <h2 className={`text-4xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+              <ShatterText text={tr('VISUAL', lang)} className="text-white" charClassName="inline-block" />{' '}
+              <ShatterText
+                text={tr('MOMENTS', lang)}
+                charClassName="inline-block animate-sweep"
+                charStyle={{
                   background: t.grad,
                   backgroundSize: '300% 300%',
                   WebkitBackgroundClip: 'text',
                   backgroundClip: 'text',
                   color: 'transparent',
                 }}
-                className="animate-sweep"
-              >
-                <GlitchTranslation textKey="MOMENTS" speed={40} />
-              </span>
+                delay={0.15}
+              />
             </h2>
           </motion.div>
 
@@ -906,9 +906,9 @@ export default function AnimeDetail() {
             <div className="font-jp mb-2 text-sm tracking-wider text-sun">
               もっと見る — <GlitchTranslation textKey="more" speed={30} />
             </div>
-            <h2 className="font-display text-4xl">
-              <span className="text-white"><GlitchTranslation textKey="OTHER" speed={40} /></span>{' '}
-              <span className="gradient-shonen animate-sweep"><GlitchTranslation textKey="EPICS" speed={40} /></span>
+            <h2 className={`text-4xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+              <ShatterText text={tr('OTHER', lang)} className="text-white" charClassName="inline-block" />{' '}
+              <ShatterText text={tr('EPICS', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" delay={0.1} />
             </h2>
           </motion.div>
 

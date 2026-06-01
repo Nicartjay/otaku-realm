@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import GlitchTranslation from './GlitchTranslation'
+import ShatterText from './ShatterText'
 import MagneticButton from './MagneticButton'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
 import useTheme from '../hooks/useTheme'
+import { useLanguage } from '../context/LanguageContext'
+import { t } from '../data/translations'
 
 /* Encouragement blinking text — inspired by CodePen oliviale/vPvvyr "Encouragement" button.
    Positioned around the GIVE UP button at various angles, sizes, timings.
@@ -73,6 +76,7 @@ export default function RubikCube() {
   const initedRef = useRef(false)
   const prefersReduced = usePrefersReducedMotion()
   const theme = useTheme()
+  const { lang } = useLanguage()
   const [visible, setVisible] = useState(false)
   const [ready, setReady] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -198,8 +202,8 @@ export default function RubikCube() {
         <p className="font-jp text-sm md:text-base text-flame tracking-widest mb-3">
           <GlitchTranslation textKey="ゲーム — challenge" className="" />
         </p>
-        <h2 className="font-display text-4xl sm:text-5xl md:text-6xl text-paper tracking-wide">
-          <GlitchTranslation textKey="PUZZLE ARENA" className="" />
+        <h2 className={`text-4xl sm:text-5xl md:text-6xl text-paper tracking-wide overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+          <ShatterText text={t('PUZZLE ARENA', lang)} charClassName="inline-block" />
         </h2>
         <p className="mt-3 text-paperSoft/60 text-sm md:text-base max-w-md mx-auto">
           <GlitchTranslation textKey="solve the cube" className="" />

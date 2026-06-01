@@ -5,6 +5,7 @@ import { ANIME } from '../data/anime.js'
 import { ContainerScroll } from './ContainerScroll.jsx'
 import { StarIcon, ArrowRightIcon } from './icons/ui.jsx'
 import GlitchTranslation from './GlitchTranslation.jsx'
+import ShatterText from './ShatterText.jsx'
 import { useLanguage } from '../context/LanguageContext.jsx'
 import { t } from '../data/translations.js'
 
@@ -32,13 +33,11 @@ export default function FeaturedScroll() {
             <div className="font-jp mb-2 text-sm tracking-[0.4em] text-sun">
               スクロールせよ — <GlitchTranslation textKey="scroll on" speed={30} />
             </div>
-            <h2 className="font-display text-4xl text-white md:text-5xl">
-              <GlitchTranslation textKey="Step inside the" speed={35} />
+            <h2 className={`text-4xl text-white md:text-5xl overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+              <ShatterText text={t('Step inside the', lang)} />
             </h2>
-            <h2 className="mt-1 font-display text-5xl leading-none md:text-7xl lg:text-[6rem]">
-              <span className="gradient-shonen animate-sweep">
-                <GlitchTranslation textKey="ANIME REALM" speed={40} />
-              </span>
+            <h2 className={`mt-1 text-5xl leading-none md:text-7xl lg:text-[6rem] overflow-visible ${lang === 'jp' ? 'font-pop' : 'font-display'}`}>
+              <ShatterText text={t('ANIME REALM', lang)} className="gradient-shonen animate-sweep" charClassName="inline-block" delay={0.15} />
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-sm text-white/60 md:text-base">
               <GlitchTranslation textKey={lang === 'jp' ? 'featuredscroll_desc' : 'featuredscroll_desc_en'} speed={15} />
