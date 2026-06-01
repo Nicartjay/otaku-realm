@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import GlitchTranslation from './GlitchTranslation'
 import MagneticButton from './MagneticButton'
 import usePrefersReducedMotion from '../hooks/usePrefersReducedMotion'
+import useTheme from '../hooks/useTheme'
 
 /* Encouragement blinking text — inspired by CodePen oliviale/vPvvyr "Encouragement" button.
    Positioned around the GIVE UP button at various angles, sizes, timings.
@@ -71,6 +72,7 @@ export default function RubikCube() {
   const gameRef = useRef(null)
   const initedRef = useRef(false)
   const prefersReduced = usePrefersReducedMotion()
+  const theme = useTheme()
   const [visible, setVisible] = useState(false)
   const [ready, setReady] = useState(false)
   const [playing, setPlaying] = useState(false)
@@ -154,6 +156,40 @@ export default function RubikCube() {
       setPlaying(true)
     }
   }
+
+  // Update cube piece color and lighting when site theme changes
+  useEffect(() => {
+    if (!gameRef.current) return
+    const g = gameRef.current.game
+    if (!g || !g.themes || !g.cube || !g.world) return
+
+    // Light mode: lighten the piece color; dark mode: restore original dark
+    const lightPiece = 0xf5f0eb // warm cream for light mode piece body
+    const darkPiece = 0x08101a  // original near-black for dark mode
+    const pieceColor = theme === 'light' ? lightPiece : darkPiece
+
+    // Update P color for all cube themes so switching themes while in light mode works
+    Object.keys(g.themes.colors).forEach(key => {
+      g.themes.colors[key].P = pieceColor
+    })
+
+    g.cube.updateColors(g.themes.getColors())
+
+    // Significantly boost scene lighting for light mode so face colors are vivid
+    const lights = g.world.lights
+    if (lights) {
+      if (theme === 'light') {
+        lights.ambient.intensity = 2.0
+        lights.front.intensity = 1.2
+        lights.back.intensity = 0.6
+      } else {
+        // Restore original dark-mode values
+        lights.ambient.intensity = 0.69
+        lights.front.intensity = 0.36
+        lights.back.intensity = 0.19
+      }
+    }
+  }, [theme, ready])
 
   return (
     <section ref={sectionRef} id="game" className="relative pt-10 md:pt-14 pb-24 md:pb-32 overflow-hidden">

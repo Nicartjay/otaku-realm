@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ANIME } from '../data/anime.js'
 import { StarIcon, ArrowRightIcon } from './icons/ui.jsx'
 import GlitchTranslation from './GlitchTranslation.jsx'
+import AnimeCardEffects from './AnimeCardEffects.jsx'
 
 function Card({ a, i }) {
   const ref = useRef(null)
+  const [isHovered, setIsHovered] = useState(false)
 
   const onMove = (e) => {
     const el = ref.current
@@ -32,23 +34,27 @@ function Card({ a, i }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
       transition={{ delay: i * 0.08, duration: 0.6, ease: 'easeOut' }}
+      className="overflow-visible"
     >
       <Link
         to={`/anime/${a.slug}`}
         data-cursor="hover"
-        className="focus-ring block rounded-2xl"
+        className="focus-ring block overflow-visible rounded-2xl"
       >
         <div
           ref={ref}
           onMouseMove={onMove}
-          onMouseLeave={onLeave}
-          className="group relative h-96 overflow-hidden rounded-2xl border border-white/10 [transform-style:preserve-3d]"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => { onLeave(); setIsHovered(false) }}
+          className="group relative h-96 overflow-visible rounded-2xl border border-white/10 [transform-style:preserve-3d]"
           style={{
             transform:
               'perspective(900px) rotateX(var(--rx,0)) rotateY(var(--ry,0))',
             transition: 'transform 0.15s ease-out',
           }}
         >
+          {/* Clipping container for card content */}
+          <div className="absolute inset-0 overflow-hidden rounded-2xl">
           {/* image */}
           <img
             src={a.cover}
@@ -139,6 +145,10 @@ function Card({ a, i }) {
           <div className="absolute right-3 top-3 h-6 w-6 border-r-2 border-t-2 border-white/80" />
           <div className="absolute bottom-3 left-3 h-6 w-6 border-b-2 border-l-2 border-white/80" />
           <div className="absolute bottom-3 right-3 h-6 w-6 border-b-2 border-r-2 border-white/80" />
+          </div>{/* end clipping container */}
+
+          {/* Per-anime particle effects on hover — outside clip so particles overflow */}
+          <AnimeCardEffects themeId={a.theme.id} isHovered={isHovered} />
         </div>
       </Link>
     </motion.div>
@@ -170,7 +180,7 @@ export default function FeaturedAnime() {
           </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 overflow-visible sm:grid-cols-2 lg:grid-cols-3">
           {ANIME.map((a, i) => (
             <Card a={a} i={i} key={a.slug} />
           ))}
