@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom'
 import { ArrowRightIcon } from './icons/ui.jsx'
 import {
-  TwitterXIcon,
   InstagramIcon,
   YoutubeIcon,
-  DiscordIcon,
   GithubIcon,
+  FacebookIcon,
 } from './icons/brands.jsx'
 import FlipLinks from './FlipLinks.jsx'
 import GlitchTranslation from './GlitchTranslation.jsx'
@@ -13,11 +12,10 @@ import { useLanguage } from '../context/LanguageContext.jsx'
 import GridShader from './GridShader.jsx'
 
 const SOCIALS = [
-  { label: 'Twitter', href: 'https://x.com', icon: <TwitterXIcon size={24} /> },
-  { label: 'Instagram', href: 'https://instagram.com', icon: <InstagramIcon size={24} /> },
-  { label: 'YouTube', href: 'https://youtube.com', icon: <YoutubeIcon size={24} /> },
-  { label: 'Discord', href: 'https://discord.com', icon: <DiscordIcon size={24} /> },
-  { label: 'GitHub', href: 'https://github.com', icon: <GithubIcon size={24} /> },
+  { label: 'GitHub', href: 'https://github.com/Nicartjay/otaku-realm', icon: <GithubIcon size={24} /> },
+  { label: 'YouTube', href: 'https://www.youtube.com/@NicartJayDavid', icon: <YoutubeIcon size={24} /> },
+  { label: 'Facebook', href: 'https://www.facebook.com/nicartjay', icon: <FacebookIcon size={24} /> },
+  { label: 'Instagram', href: 'https://www.instagram.com/nicartjay', icon: <InstagramIcon size={24} /> },
 ]
 
 export default function Footer() {

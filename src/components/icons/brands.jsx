@@ -54,3 +54,11 @@ export function GithubIcon({ size = 20, className = '', color }) {
     </svg>
   )
 }
+
+export function FacebookIcon({ size = 20, className = '', color }) {
+  return (
+    <svg {...wrap(size, className, color, 'Facebook')}>
+      <path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 1.09.044 1.613.115v3.146c-.427-.044-.72-.065-.95-.065-1.35 0-1.872.513-1.872 1.846v2.516h2.49l-.535 3.667h-1.955v7.98C18.235 22.477 24 17.35 24 12 24 5.373 18.627 0 12 0S0 5.373 0 12c0 5.628 4.105 10.3 9.101 11.691z" />
+    </svg>
+  )
+}
